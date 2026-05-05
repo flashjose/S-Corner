@@ -108,7 +108,7 @@ const MaskedHeroImage = () => {
         </defs>
 
         <image
-          href="https://assets.unicorn.studio/images/AwQZXeRFH3ZAk5rmW3yI6tivTOk1/remix_16453%20(1).jpg"
+          href="../imgs/sparrows.png"
           width="100%"
           height="100%"
           preserveAspectRatio="xMidYMid slice"
@@ -135,7 +135,7 @@ const App = () => {
       
       {/* 顶部导航 */}
       <nav className="fixed top-0 w-full p-6 md:p-10 flex justify-between items-center z-50">
-        <div className="text-[10px] font-bold uppercase tracking-[0.4em]">Sparrow / 2026</div>
+        <div className="text-[10px] font-bold uppercase tracking-[0.4em]">Sparrow-Joseph</div>
         <div className="flex gap-10 text-[10px] font-bold uppercase tracking-[0.4em] hidden md:flex">
           <a href="#" className="hover:line-through">Process</a>
           <a href="#" className="hover:line-through">Members</a>
@@ -177,7 +177,7 @@ const App = () => {
           Changing the face of venture capital through community.
         </div>
         <div className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40">
-          Scroll to explore
+          Start your journey
         </div>
       </footer>
     </div>
