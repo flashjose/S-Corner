@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./s-corner.db"
+}
+
+model Article {
+  id            String    @id @default(cuid())
+  title         String
+  content       String
+  source        String
+  sourceUrl     String?
+  author        String?
+  category      String    @default("news")
+  difficulty    String    @default("medium")
+  tags          String    @default("[]")  // JSON array stored as string (SQLite)
+  isFromRss     Boolean   @default(false)
+  rssFeedId     String?
+  status        String    @default("draft")
+  publishedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  paragraphs    Paragraph[]
+  annotations   Annotation[]
+  progress      ReadingProgress[]
+
+  @@index([status])
+  @@index([category])
+  @@index([isFromRss])
+}
+
+model Paragraph {
+  id                   String  @id @default(cuid())
+  articleId            String
+  index                Int
+  originalText         String
+  chineseTranslation   String?
+  grammaticalAnalysis  String?
+  expressionTips       String?
+
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId])
+  @@unique([articleId, index])
+}
+
+model Annotation {
+  id            String   @id @default(cuid())
+  articleId     String
+  paragraphId   String?
+  startOffset   Int
+  endOffset     Int
+  selectedText  String
+  translation   String?
+  note          String?
+  color         String?
+  createdAt     DateTime @default(now())
+
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId])
+}
+
+model Vocabulary {
+  id                String   @id @default(cuid())
+  word              String
+  pronunciation     String?
+  definition        String
+  chineseDefinition String
+  example           String?
+  sourceArticleId   String?
+  masteryLevel      Int      @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([word])
+  @@index([masteryLevel])
+}
+
+model RssFeed {
+  id           String    @id @default(cuid())
+  name         String
+  url          String    @unique
+  category     String    @default("news")
+  isActive     Boolean   @default(true)
+  lastFetchedAt DateTime?
+  createdAt    DateTime  @default(now())
+
+  @@index([isActive])
+}
+
+model ReadingProgress {
+  id              String   @id @default(cuid())
+  articleId       String   @unique
+  lastParagraph   Int      @default(0)
+  totalParagraphs Int      @default(0)
+  timeSpent       Int      @default(0)
+  isCompleted     Boolean  @default(false)
+  lastReadAt      DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId])
+}
