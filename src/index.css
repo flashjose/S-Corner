@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Custom font imports */
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
@@ -70,3 +71,6 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+=======
+@import "tailwindcss";
+>>>>>>> f94199c812906bf10f8717b4c72e83c7f89e71ba
