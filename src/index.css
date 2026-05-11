@@ -1,19 +1,15 @@
-<<<<<<< HEAD
 /* Custom font imports */
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
 
-/* ─── Dark mode: 通过 data-theme 属性而非 media query ── */
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
-
 /* ─── 主题色彩变量 ─────────────────────────────────────── */
 :root {
   --bg: #ffffff;
   --bg-secondary: #f5f5f5;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --text-muted: #999999;
+  --text-primary: #292929;
+  --text-secondary: #737373;
+  --text-muted: #a3a3a3;
   --border: #e5e5e5;
   --border-hover: #d4d4d4;
   --surface: #fafafa;
@@ -27,9 +23,9 @@
 [data-theme="dark"] {
   --bg: #0a0a0a;
   --bg-secondary: #171717;
-  --text-primary: #ededed;
-  --text-secondary: #b0b0b0;
-  --text-muted: #808080;
+  --text-primary: #e5e5e5;
+  --text-secondary: #a3a3a3;
+  --text-muted: #737373;
   --border: #262626;
   --border-hover: #404040;
   --surface: #141414;
@@ -71,6 +67,3 @@ html {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-=======
-@import "tailwindcss";
->>>>>>> f94199c812906bf10f8717b4c72e83c7f89e71ba
