@@ -7,3 +7,11 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Java
+server-java/target/
+hs_err_pid*.log
+*.class
+
+# IDE
+.vscode/

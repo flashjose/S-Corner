@@ -18,22 +18,33 @@
   --selection-bg: #e5e5e5;
   --hero-overlay: #ffffff;
   --ink-circle-fill: black;
+  --pdf-bg: #ffffff;
 }
 
 [data-theme="dark"] {
-  --bg: #0a0a0a;
-  --bg-secondary: #171717;
-  --text-primary: #e5e5e5;
-  --text-secondary: #a3a3a3;
-  --text-muted: #737373;
-  --border: #262626;
-  --border-hover: #404040;
-  --surface: #141414;
-  --card-bg: #171717;
-  --nav-bg: rgba(10, 10, 10, 0.85);
-  --selection-bg: #404040;
-  --hero-overlay: #0a0a0a;
+  --bg: #050505;
+  --bg-secondary: #0f0f0f;
+  --text-primary: #f0f0f0;
+  --text-secondary: #b8b8b8;
+  --text-muted: #6b6b6b;
+  --border: #1e1e1e;
+  --border-hover: #3a3a3a;
+  --surface: #0c0c0c;
+  --card-bg: #0f0f0f;
+  --nav-bg: rgba(5, 5, 5, 0.9);
+  --selection-bg: #3a3a3a;
+  --hero-overlay: #050505;
   --ink-circle-fill: white;
+  --pdf-bg: #1a1a1a;
+}
+
+/* Dark mode: invert PDF canvas for comfortable reading */
+[data-theme="dark"] .pdf-page {
+  filter: invert(1);
+  background-color: #1a1a1a !important;
+}
+[data-theme="dark"] .pdf-annotation-mark {
+  filter: invert(1);
 }
 
 html {

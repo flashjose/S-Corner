@@ -112,7 +112,7 @@ const InkReveal: React.FC<InkRevealProps> = ({ disabled = false }) => {
 
   const { w, h } = size;
   const theme = useAppStore((s) => s.theme);
-  const overlayFill = theme === 'dark' ? '#0a0a0a' : '#ffffff';
+  const overlayFill = theme === 'dark' ? '#050505' : '#ffffff';
 
   // disabled 时直接不渲染遮罩层，sparrow 图片完全可见
   if (disabled) return null;

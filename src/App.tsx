@@ -4,15 +4,16 @@ import NoiseOverlay from '@/components/NoiseOverlay';
 import InkFilters from '@/components/InkFilters';
 import ThemeToggle from '@/components/ThemeToggle';
 import HomePage from '@/pages/HomePage';
-import ArticleListPage from '@/pages/ArticleListPage';
-import ArticleReaderPage from '@/pages/ArticleReaderPage';
+import CategoryPage from '@/pages/CategoryPage';
+import PaperViewer from '@/pages/PaperViewer';
 import VocabularyPage from '@/pages/VocabularyPage';
-import StatsPage from '@/pages/StatsPage';
 
 const NAV_ITEMS = [
-  { to: '/articles', label: 'Articles' },
+  { to: '/cet4', label: 'CET4' },
+  { to: '/cet6', label: 'CET6' },
+  { to: '/kaoyan', label: '考研' },
+  { to: '/tem', label: '专四专八' },
   { to: '/vocabulary', label: 'Vocabulary' },
-  { to: '/stats', label: 'Stats' },
 ];
 
 const AppLayout = () => {
@@ -59,7 +60,7 @@ const AppLayout = () => {
 
         {/* Mobile menu hint */}
         <div className="text-[10px] font-bold uppercase tracking-[0.4em] md:hidden">
-          <Link to="/articles">Read</Link>
+          <Link to="/cet4">真题</Link>
         </div>
       </nav>
 
@@ -74,10 +75,9 @@ const AppLayout = () => {
         >
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/articles" element={<ArticleListPage />} />
-            <Route path="/articles/:id" element={<ArticleReaderPage />} />
+            <Route path="/:categorySlug" element={<CategoryPage />} />
+            <Route path="/:categorySlug/:paperSlug/*" element={<PaperViewer />} />
             <Route path="/vocabulary" element={<VocabularyPage />} />
-            <Route path="/stats" element={<StatsPage />} />
           </Routes>
         </motion.div>
       </AnimatePresence>
@@ -86,7 +86,7 @@ const AppLayout = () => {
       {isHomePage && (
         <footer className="fixed bottom-0 w-full p-6 md:p-10 flex justify-between items-end z-50 pointer-events-none">
           <div className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 max-w-[200px]">
-            外刊精读 · 沉浸式英文学习平台
+            英语真题在线 · 按试卷排版设计
           </div>
           <div className="text-[9px] font-bold uppercase tracking-[0.3em] opacity-40 flex items-center gap-2">
             <span className="inline-block animate-bounce">↓</span>

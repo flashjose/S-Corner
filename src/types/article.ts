@@ -10,6 +10,7 @@ export interface Article {
   tags: string; // JSON string
   isFromRss: boolean;
   rssFeedId?: string;
+  imageUrl?: string;
   status: string;
   publishedAt?: string;
   createdAt: string;
@@ -17,7 +18,8 @@ export interface Article {
   paragraphs?: Paragraph[];
   annotations?: Annotation[];
   progress?: ReadingProgress[];
-  _count?: { paragraphs: number; annotations: number };
+  images?: ArticleImage[];
+  _count?: { paragraphs: number; annotations: number; images: number };
 }
 
 export interface Paragraph {
@@ -43,6 +45,15 @@ export interface Annotation {
   createdAt: string;
 }
 
+export interface ArticleImage {
+  id: string;
+  articleId: string;
+  url: string;
+  alt?: string;
+  caption?: string;
+  index: number;
+}
+
 export interface ReadingProgress {
   id: string;
   articleId: string;
@@ -51,16 +62,6 @@ export interface ReadingProgress {
   timeSpent: number;
   isCompleted: boolean;
   lastReadAt: string;
-  createdAt: string;
-}
-
-export interface RssFeed {
-  id: string;
-  name: string;
-  url: string;
-  category: string;
-  isActive: boolean;
-  lastFetchedAt?: string;
   createdAt: string;
 }
 
@@ -76,6 +77,18 @@ export interface DictionaryResult {
     }[];
   }[];
   message?: string;
+}
+
+export interface RssFeed {
+  id: string;
+  name: string;
+  url: string;
+  category: string;
+  isActive: boolean;
+  fetchHour: number;
+  fetchMinute: number;
+  lastFetchedAt?: string;
+  createdAt: string;
 }
 
 export interface Stats {
