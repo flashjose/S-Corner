@@ -4,6 +4,7 @@ import com.scorner.entity.RssFeed;
 import com.scorner.repository.RssFeedRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Profile("legacy")
 public class SchedulerService {
 
     private static final Logger log = LoggerFactory.getLogger(SchedulerService.class);

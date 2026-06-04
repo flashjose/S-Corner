@@ -1,23 +1,26 @@
 {
-  "name": "react-vite-tailwind",
-  "private": true,
-  "version": "0.0.0",
+  "name": "s-corner",
+  "private": false,
+  "version": "1.0.0",
+  "description": "Open-source English exam practice platform (CET-4/6, 考研, TEM)",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "import-content": "node scripts/import-content.mjs",
+    "import-ecdict": "node scripts/import-ecdict.mjs",
+    "import-ecdict-sqlite": "node scripts/import-ecdict-sqlite.mjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.100.9",
-    "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.14.0",
     "pdfjs-dist": "^4.4.168",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-router-dom": "^7.15.0",
-    "tailwind-merge": "^3.4.0",
     "zustand": "^5.0.13"
   },
   "devDependencies": {
@@ -26,6 +29,9 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.1",
+    "better-sqlite3": "^11.10.0",
+    "mysql2": "^3.22.4",
+    "playwright": "^1.60.0",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
     "vite": "7.3.2",

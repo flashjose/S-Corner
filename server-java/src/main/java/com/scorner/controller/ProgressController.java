@@ -2,11 +2,13 @@ package com.scorner.controller;
 
 import com.scorner.entity.ReadingProgress;
 import com.scorner.service.ProgressService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Profile("legacy")
 @RestController
 @RequestMapping("/api/progress")
 public class ProgressController {

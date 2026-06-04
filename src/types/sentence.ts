@@ -29,8 +29,4 @@ export interface Sentence {
   favorites?: number;
 }
 
-export interface SentenceLibrary {
-  sentences: Sentence[];
-  totalCount: number;
-  lastUpdated: string;
-}
+

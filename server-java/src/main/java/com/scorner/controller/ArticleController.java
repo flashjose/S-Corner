@@ -2,12 +2,14 @@ package com.scorner.controller;
 
 import com.scorner.entity.Article;
 import com.scorner.service.ArticleService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+@Profile("legacy")
 @RestController
 @RequestMapping("/api/articles")
 public class ArticleController {

@@ -1,5 +1,6 @@
 node_modules
 dist
+server-java/target
 __pycache__/
 *.py[cod]
 .DS_Store
@@ -7,6 +8,11 @@ __pycache__/
 .env
 .env.*
 !.env.example
+data/ecdict.csv
+data/*.csv
+data/*.db
+scripts/.zhenti-storage.json
+scripts/.zhenti-browser-profile/
 
 # Java
 server-java/target/

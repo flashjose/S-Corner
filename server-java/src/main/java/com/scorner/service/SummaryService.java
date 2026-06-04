@@ -1,5 +1,6 @@
 package com.scorner.service;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -7,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
+@Profile("legacy")
 public class SummaryService {
 
     private static final Set<String> STOP_WORDS = Set.of(

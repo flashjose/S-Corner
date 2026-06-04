@@ -20,7 +20,9 @@ public class DictionaryController {
      * GET /api/dictionary/:word - 查询单词释义
      */
     @GetMapping("/{word}")
-    public ResponseEntity<Map<String, Object>> lookup(@PathVariable String word) {
-        return ResponseEntity.ok(dictionaryService.lookup(word));
+    public ResponseEntity<Map<String, Object>> lookup(
+            @PathVariable String word,
+            @RequestParam(defaultValue = "false") boolean zh) {
+        return ResponseEntity.ok(dictionaryService.lookup(word, zh));
     }
 }

@@ -19,6 +19,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.springframework.data.domain.Sort;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 @Service
+@Profile("legacy")
 public class RssService {
 
     private static final Logger log = LoggerFactory.getLogger(RssService.class);

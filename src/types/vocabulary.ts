@@ -10,3 +10,8 @@ export interface VocabularyItem {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface VocabularyListResponse {
+  vocabularies: VocabularyItem[];
+  total: number;
+}

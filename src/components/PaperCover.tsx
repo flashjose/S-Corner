@@ -7,21 +7,25 @@ interface PaperCoverProps {
   className?: string;
 }
 
-const CATEGORY_STYLES: Record<string, { label: string; accent: string; bg: string; border: string }> = {
-  cet4: { label: 'CET-4', accent: '#2563eb', bg: '#eff6ff', border: '#bfdbfe' },
-  cet6: { label: 'CET-6', accent: '#059669', bg: '#ecfdf5', border: '#a7f3d0' },
-  kaoyan: { label: '考研', accent: '#dc2626', bg: '#fef2f2', border: '#fecaca' },
-  tem: { label: 'TEM', accent: '#7c3aed', bg: '#f5f3ff', border: '#ddd6fe' },
+const CATEGORY_STYLES: Record<string, { label: string; accent: string; bg: string; border: string; darkBg: string; darkBorder: string }> = {
+  cet4: { label: 'CET-4', accent: '#2563eb', bg: '#eff6ff', border: '#bfdbfe', darkBg: '#1e293b', darkBorder: '#334155' },
+  cet6: { label: 'CET-6', accent: '#059669', bg: '#ecfdf5', border: '#a7f3d0', darkBg: '#1a2e2a', darkBorder: '#334155' },
+  kaoyan: { label: '考研', accent: '#dc2626', bg: '#fef2f2', border: '#fecaca', darkBg: '#2e1a1a', darkBorder: '#334155' },
+  tem: { label: 'TEM', accent: '#7c3aed', bg: '#f5f3ff', border: '#ddd6fe', darkBg: '#231a2e', darkBorder: '#334155' },
 };
 
 const PaperCover = ({ categorySlug, year, month, setId, title, className = '' }: PaperCoverProps) => {
   const style = CATEGORY_STYLES[categorySlug] || CATEGORY_STYLES.cet4;
   const halfYear = month >= 7 ? '下' : '上';
+  const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark';
 
   return (
     <div
       className={`relative w-full h-full overflow-hidden ${className}`}
-      style={{ backgroundColor: style.bg, borderColor: style.border }}
+      style={{
+        backgroundColor: isDark ? style.darkBg : style.bg,
+        borderColor: isDark ? style.darkBorder : style.border,
+      }}
     >
       {/* 顶部色条 */}
       <div className="absolute top-0 left-0 right-0 h-1.5" style={{ backgroundColor: style.accent }} />

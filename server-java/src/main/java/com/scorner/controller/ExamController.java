@@ -64,6 +64,33 @@ public class ExamController {
     }
 
     /**
+     * PUT /api/exam/paper/{id}/content - 更新试卷内容（答案/音频/原文/时间轴）
+     */
+    @PutMapping("/paper/{id}/content")
+    public ResponseEntity<?> updatePaperContent(@PathVariable String id, @RequestBody Map<String, Object> body) {
+        try {
+            examService.updatePaperContent(id, body);
+            return ResponseEntity.ok(Map.of("success", true));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    /**
+     * POST /api/exam/content/import - 批量导入试卷内容
+     */
+    @PostMapping("/content/import")
+    @SuppressWarnings("unchecked")
+    public ResponseEntity<?> importContent(@RequestBody Map<String, Object> body) {
+        List<Map<String, Object>> papers = (List<Map<String, Object>>) body.get("papers");
+        if (papers == null || papers.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "papers array is required"));
+        }
+        int updated = examService.importPaperContent(papers);
+        return ResponseEntity.ok(Map.of("success", true, "updated", updated));
+    }
+
+    /**
      * PUT /api/exam/paper/{id}/answers - 更新试卷答案
      */
     @PutMapping("/paper/{id}/answers")

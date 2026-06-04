@@ -1,6 +1,7 @@
 package com.scorner.controller;
 
 import com.scorner.service.StatsService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+@Profile("legacy")
 @RestController
 @RequestMapping("/api/stats")
 public class StatsController {

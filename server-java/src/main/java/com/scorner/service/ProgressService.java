@@ -2,6 +2,7 @@ package com.scorner.service;
 
 import com.scorner.entity.ReadingProgress;
 import com.scorner.repository.ReadingProgressRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Profile("legacy")
 public class ProgressService {
 
     private final ReadingProgressRepository progressRepository;

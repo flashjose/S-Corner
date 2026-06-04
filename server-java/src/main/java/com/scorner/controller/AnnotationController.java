@@ -2,12 +2,14 @@ package com.scorner.controller;
 
 import com.scorner.entity.Annotation;
 import com.scorner.service.AnnotationService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+@Profile("legacy")
 @RestController
 @RequestMapping("/api/annotations")
 public class AnnotationController {

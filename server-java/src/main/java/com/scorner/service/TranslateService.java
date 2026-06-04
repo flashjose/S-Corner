@@ -132,7 +132,7 @@ public class TranslateService {
                 String translated = translate(text.substring(0, Math.min(text.length(), 2000)), from, to);
                 results.add(translated);
                 // 简单限速
-                Thread.sleep(200);
+                Thread.sleep(120);
             } catch (Exception e) {
                 results.add(text); // 翻译失败返回原文
             }

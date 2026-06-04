@@ -2,6 +2,7 @@ package com.scorner.service;
 
 import com.scorner.entity.Annotation;
 import com.scorner.repository.AnnotationRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Profile("legacy")
 public class AnnotationService {
 
     private final AnnotationRepository annotationRepository;

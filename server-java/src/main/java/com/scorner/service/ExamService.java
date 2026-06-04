@@ -2,6 +2,7 @@ package com.scorner.service;
 
 import com.scorner.entity.*;
 import com.scorner.repository.*;
+import com.scorner.util.MapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -131,6 +132,7 @@ public class ExamService {
         result.put("audioUrl", p.getAudioUrl());
         result.put("answers", p.getAnswers());
         result.put("transcript", p.getTranscript());
+        result.put("audioTimeline", p.getAudioTimeline());
         result.put("year", p.getYear());
         result.put("month", p.getMonth());
         result.put("setId", p.getSetId());
@@ -159,6 +161,70 @@ public class ExamService {
             .orElseThrow(() -> new RuntimeException("Paper not found: " + paperId));
         paper.setAnswers(answers);
         paperRepository.save(paper);
+    }
+
+    @Transactional
+    public void updatePaperContent(String paperId, Map<String, Object> fields) {
+        ExamPaper paper = paperRepository.findById(paperId)
+            .orElseThrow(() -> new RuntimeException("Paper not found: " + paperId));
+        if (fields.containsKey("answers")) {
+            Object answers = fields.get("answers");
+            paper.setAnswers(answers instanceof String ? (String) answers : answers.toString());
+        }
+        if (fields.containsKey("audioUrl")) paper.setAudioUrl((String) fields.get("audioUrl"));
+        if (fields.containsKey("transcript")) paper.setTranscript((String) fields.get("transcript"));
+        if (fields.containsKey("audioTimeline")) {
+            Object timeline = fields.get("audioTimeline");
+            paper.setAudioTimeline(timeline instanceof String ? (String) timeline : timeline.toString());
+        }
+        paperRepository.save(paper);
+    }
+
+    @Transactional
+    public int importPaperContent(List<Map<String, Object>> papers) {
+        int updated = 0;
+        for (Map<String, Object> item : papers) {
+            String categorySlug = (String) item.get("categorySlug");
+            String slug = (String) item.get("slug");
+            if (categorySlug == null || slug == null) continue;
+
+            Optional<ExamCategory> category = categoryRepository.findBySlug(categorySlug);
+            if (category.isEmpty()) continue;
+
+            Optional<ExamPaper> paper = paperRepository.findBySlugAndCategoryId(slug, category.get().getId());
+            if (paper.isEmpty()) continue;
+
+            ExamPaper p = paper.get();
+            if (item.containsKey("answers")) {
+                Object answers = item.get("answers");
+                if (answers instanceof String) {
+                    p.setAnswers((String) answers);
+                } else {
+                    try {
+                        p.setAnswers(new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(answers));
+                    } catch (Exception e) {
+                        p.setAnswers(answers.toString());
+                    }
+                }
+            }
+            if (item.containsKey("audioUrl")) p.setAudioUrl((String) item.get("audioUrl"));
+            if (item.containsKey("transcript")) p.setTranscript((String) item.get("transcript"));
+            if (item.containsKey("audioTimeline")) {
+                Object timeline = item.get("audioTimeline");
+                if (timeline instanceof String) {
+                    p.setAudioTimeline((String) timeline);
+                } else {
+                    try {
+                        p.setAudioTimeline(new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(timeline));
+                    } catch (Exception e) {
+                        p.setAudioTimeline(timeline.toString());
+                    }
+                }
+            }
+            paperRepository.save(p);
+            updated++;
+        }
+        return updated;
     }
 
     // ── 标注 ──
@@ -198,18 +264,24 @@ public class ExamService {
         PaperProgress progress;
         if (existing.isPresent()) {
             progress = existing.get();
-            if (fields.containsKey("currentPage")) progress.setCurrentPage((Integer) fields.get("currentPage"));
-            if (fields.containsKey("totalPages")) progress.setTotalPages((Integer) fields.get("totalPages"));
-            if (fields.containsKey("timeSpent")) progress.setTimeSpent((Integer) fields.get("timeSpent"));
-            if (fields.containsKey("isCompleted")) progress.setIsCompleted((Boolean) fields.get("isCompleted"));
+            if (fields.containsKey("currentPage")) progress.setCurrentPage(MapUtils.getInt(fields, "currentPage"));
+            if (fields.containsKey("totalPages")) progress.setTotalPages(MapUtils.getInt(fields, "totalPages"));
+            if (fields.containsKey("timeSpent")) {
+                Integer incoming = MapUtils.getInt(fields, "timeSpent");
+                if (incoming != null && incoming > 0) {
+                    int current = progress.getTimeSpent() != null ? progress.getTimeSpent() : 0;
+                    progress.setTimeSpent(current + incoming);
+                }
+            }
+            if (fields.containsKey("isCompleted")) progress.setIsCompleted(MapUtils.getBoolean(fields, "isCompleted"));
             progress.setLastReadAt(LocalDateTime.now());
         } else {
             progress = new PaperProgress();
             progress.setPaperId(paperId);
-            progress.setCurrentPage(fields.containsKey("currentPage") ? (Integer) fields.get("currentPage") : 0);
-            progress.setTotalPages(fields.containsKey("totalPages") ? (Integer) fields.get("totalPages") : 0);
-            progress.setTimeSpent(fields.containsKey("timeSpent") ? (Integer) fields.get("timeSpent") : 0);
-            progress.setIsCompleted(fields.containsKey("isCompleted") ? (Boolean) fields.get("isCompleted") : false);
+            progress.setCurrentPage(fields.containsKey("currentPage") ? MapUtils.getInt(fields, "currentPage") : 0);
+            progress.setTotalPages(fields.containsKey("totalPages") ? MapUtils.getInt(fields, "totalPages") : 0);
+            progress.setTimeSpent(fields.containsKey("timeSpent") ? MapUtils.getInt(fields, "timeSpent") : 0);
+            progress.setIsCompleted(fields.containsKey("isCompleted") ? MapUtils.getBoolean(fields, "isCompleted") : false);
         }
 
         return progressRepository.save(progress);

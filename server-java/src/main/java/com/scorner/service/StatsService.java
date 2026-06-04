@@ -2,6 +2,7 @@ package com.scorner.service;
 
 import com.scorner.entity.ReadingProgress;
 import com.scorner.repository.*;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
+@Profile("legacy")
 public class StatsService {
 
     private final ArticleRepository articleRepository;

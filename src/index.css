@@ -38,13 +38,12 @@
   --pdf-bg: #1a1a1a;
 }
 
-/* Dark mode: invert PDF canvas for comfortable reading */
-[data-theme="dark"] .pdf-page {
-  filter: invert(1);
-  background-color: #1a1a1a !important;
+/* Dark mode: invert PDF canvas only — text layer stays selectable */
+.pdf-page-slot {
+  background-color: var(--pdf-bg);
 }
-[data-theme="dark"] .pdf-annotation-mark {
-  filter: invert(1);
+[data-theme="dark"] .pdf-page-slot canvas {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 html {
@@ -77,4 +76,471 @@ html {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* 移动端 PDF：内容宽度随页面实际尺寸展开，支持横竖滑动 */
+.pdf-scroll-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.pdf-scroll-inner {
+  width: max-content;
+}
+
+.pdf-canvas-pan {
+  width: max-content;
+}
+
+/* ─── 听力播放器 ───────────────────────────────────────── */
+.listening-player-bar {
+  width: 100%;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  z-index: 50;
+}
+
+.listening-player-bar--empty {
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.listening-player-bar--empty p {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.listening-player-inner {
+  padding: 0.65rem 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.listening-player-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.listening-play-btn {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  background: var(--card-bg);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.listening-play-btn:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.listening-play-btn:active {
+  transform: scale(0.96);
+}
+
+.listening-time {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  min-width: 4.75rem;
+}
+
+.listening-time-current {
+  color: var(--text-primary);
+}
+
+.listening-time-sep,
+.listening-time-total {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.listening-track-wrap {
+  flex: 1;
+  min-width: 0;
+  padding: 0.35rem 0;
+  cursor: pointer;
+}
+
+.listening-track-sections {
+  position: relative;
+  height: 4px;
+  margin-bottom: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.listening-track-section {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--border);
+  opacity: 0.55;
+  border-radius: 1px;
+}
+
+.listening-track-section:nth-child(odd) {
+  opacity: 0.35;
+}
+
+.listening-track {
+  position: relative;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--border);
+  overflow: visible;
+}
+
+.listening-track-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 9999px;
+  background: var(--text-primary);
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+.listening-track-hover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--text-muted);
+  opacity: 0.25;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.listening-track-thumb {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  border-radius: 9999px;
+  background: var(--text-primary);
+  border: 2px solid var(--card-bg);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  transition: left 0.08s linear;
+}
+
+.listening-track-tick {
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: var(--text-muted);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: transform 0.12s, background 0.12s, opacity 0.12s;
+}
+
+.listening-track-tick:hover,
+.listening-track-tick.is-active {
+  transform: scale(1.6);
+  background: var(--text-primary);
+  opacity: 1;
+}
+
+.listening-transcript-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.65rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  background: transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.listening-transcript-toggle:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.listening-transcript-toggle.is-open {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: var(--surface);
+}
+
+.listening-player-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.listening-section-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.listening-section-chip {
+  padding: 0.1rem 0.45rem;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  color: var(--text-muted);
+  background: var(--surface);
+  cursor: pointer;
+  transition: color 0.12s, background 0.12s;
+}
+
+.listening-section-chip:hover {
+  color: var(--text-primary);
+  background: var(--border);
+}
+
+.listening-question-pills {
+  display: flex;
+  gap: 0.2rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+}
+
+.listening-question-pill {
+  flex-shrink: 0;
+  min-width: 1.75rem;
+  height: 1.65rem;
+  padding: 0 0.35rem;
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-muted);
+  background: var(--surface);
+  cursor: pointer;
+  transition: color 0.12s, background 0.12s, border-color 0.12s, transform 0.12s;
+}
+
+.listening-question-pill:hover {
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.listening-question-pill.is-active {
+  color: var(--bg);
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+/* 听力原文面板 */
+.listening-transcript-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  max-height: min(50vh, 420px);
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .listening-transcript-panel {
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.listening-transcript-panel-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.listening-transcript-panel-header span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.listening-transcript-panel-header button {
+  color: var(--text-muted);
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: color 0.12s, background 0.12s;
+}
+
+.listening-transcript-panel-header button:hover {
+  color: var(--text-primary);
+  background: var(--border);
+}
+
+.listening-transcript-panel-body {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.listening-transcript-doc-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.listening-transcript-section + .listening-transcript-section {
+  margin-top: 1.5rem;
+}
+
+.listening-transcript-section-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.listening-transcript-passage {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.listening-transcript-dialogue {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.listening-transcript-line {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.listening-transcript-speaker {
+  flex-shrink: 0;
+  width: 1.25rem;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.listening-transcript-questions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.listening-transcript-question {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.listening-transcript-question.is-active {
+  border-color: var(--border);
+  background: var(--card-bg);
+}
+
+.listening-transcript-question.is-clickable:hover {
+  border-color: var(--border-hover);
+}
+
+.listening-transcript-question-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.55rem 0.65rem;
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  border: none;
+  background: transparent;
+  cursor: default;
+}
+
+.listening-transcript-question.is-clickable .listening-transcript-question-btn {
+  cursor: pointer;
+}
+
+.listening-transcript-qnum {
+  flex-shrink: 0;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 6px;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.listening-transcript-question.is-active .listening-transcript-qnum {
+  color: var(--bg);
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.listening-transcript-qtext {
+  flex: 1;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  padding-top: 0.15rem;
+}
+
+.listening-transcript-empty {
+  white-space: pre-wrap;
+  line-height: 1.65;
 }

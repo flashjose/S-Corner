@@ -8,6 +8,18 @@ export interface ExamCategory {
   coverImage?: string;
 }
 
+// ── 听力时间轴 ──
+export interface AudioTimelineSegment {
+  label: string;
+  startMs: number;
+  type: 'section' | 'question';
+}
+
+export interface AudioTimeline {
+  durationMs: number;
+  segments: AudioTimelineSegment[];
+}
+
 // ── 试卷 ──
 export interface ExamPaper {
   id: string;
@@ -17,6 +29,7 @@ export interface ExamPaper {
   coverImage?: string;
   pdfUrl?: string;
   audioUrl?: string;
+  audioTimeline?: string | AudioTimeline; // JSON string or parsed object
   answers?: string;     // JSON string
   transcript?: string;  // 听力原文
   year: number;
@@ -70,6 +83,7 @@ export interface DictionaryResult {
     definitions: {
       definition: string;
       example?: string;
+      exampleZh?: string;
       synonyms?: string[];
     }[];
     definitionsZh?: string[];

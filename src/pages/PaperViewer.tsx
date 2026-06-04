@@ -3,10 +3,23 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useExamPaperDetail } from '@/hooks/useExam';
 import { useAddVocabulary } from '@/hooks/useVocabulary';
-import PdfCanvas from '@/components/PdfCanvas';
+import PdfCanvas, { captureLookupMark, type LookupMark } from '@/components/PdfCanvas';
+import ErrorState from '@/components/ErrorState';
 import { ArrowLeft, ZoomIn, ZoomOut, Maximize, Download, CheckCircle, X, Languages, BookOpen } from 'lucide-react';
-import { translateApi, dictionaryApi } from '@/services/api';
+import { translateApi, dictionaryApi, examApi } from '@/services/api';
+import DictEntry from '@/components/DictEntry';
+import ListeningPlayerBar, { LISTENING_PLAYER_HEIGHT } from '@/components/ListeningPlayerBar';
 import type { DictionaryResult } from '@/types/exam';
+import {
+  zoomToRenderScale,
+  computeFitWidthZoom,
+  isMobilePdfLayout,
+  MOBILE_DEFAULT_ZOOM,
+  PDF_ZOOM_OPTIONS_MOBILE,
+  PDF_ZOOM_OPTIONS_DESKTOP,
+} from '@/utils/pdfZoom';
+import { resolveListeningAudioUrl } from '@/utils/listeningAudio';
+import { pickChineseForVocab, pickDictHeadlineZh } from '@/utils/dictDisplay';
 
 /* ── 答案解析 ── */
 function parseAnswers(raw: string): { num: string; answer: string }[] {
@@ -23,6 +36,9 @@ function parseAnswers(raw: string): { num: string; answer: string }[] {
         if (typeof item === 'string') {
           const m = item.match(/^(\d+)[.\s、:：]+(.+)$/);
           return m ? { num: m[1], answer: m[2].trim() } : { num: String(i + 1), answer: item.trim() };
+        }
+        if (typeof item === 'object' && item !== null) {
+          return { num: String(item.num ?? i + 1), answer: String(item.answer ?? JSON.stringify(item)) };
         }
         return { num: String(i + 1), answer: String(item) };
       });
@@ -44,12 +60,18 @@ function parseAnswers(raw: string): { num: string; answer: string }[] {
 const PaperViewer = () => {
   const { categorySlug, paperSlug, '*': wildcard } = useParams<{ categorySlug: string; paperSlug: string; '*': string }>();
   const fullSlug = wildcard ? `${paperSlug}/${wildcard}` : `${paperSlug}`;
-  const { data: paper, isLoading } = useExamPaperDetail(`${categorySlug}/${fullSlug}`);
+  const { data: paper, isLoading, isError, refetch } = useExamPaperDetail(`${categorySlug}/${fullSlug}`);
+  const paperId = paper?.id || '';
 
+  const [lookupMarks, setLookupMarks] = useState<LookupMark[]>([]);
+  const dictCacheRef = useRef<Map<string, DictionaryResult>>(new Map());
   const [zoom, setZoom] = useState(100);
+  const [isMobileLayout, setIsMobileLayout] = useState(isMobilePdfLayout);
+  const pdfScrollRef = useRef<HTMLDivElement>(null);
+  const pageWidthRef = useRef(595);
   const [showAnswers, setShowAnswers] = useState(false);
+  const [showAllAnswers, setShowAllAnswers] = useState(false);
   const [activeAnswer, setActiveAnswer] = useState<number | null>(null);
-  const [showTranscript, setShowTranscript] = useState(false);
 
   const addVocab = useAddVocabulary();
 
@@ -63,18 +85,11 @@ const PaperViewer = () => {
   const [lookupLoading, setLookupLoading] = useState(false);
   const [savedToVocab, setSavedToVocab] = useState(false);
 
-  const audioRef = useRef<HTMLAudioElement>(null);
   const viewerRef = useRef<HTMLDivElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [audioProgress, setAudioProgress] = useState(0);
-  const [audioDuration, setAudioDuration] = useState(0);
-
-  /* ── 学习进度 ── */
   const startTimeRef = useRef(Date.now());
+  const lastSentElapsedRef = useRef(0);
   const totalPagesRef = useRef(0);
   const currentPageRef = useRef(1);
-  const paperId = paper?.id || '';
-
   const handlePdfReady = useCallback((numPages: number) => {
     totalPagesRef.current = numPages;
   }, []);
@@ -84,18 +99,60 @@ const PaperViewer = () => {
   }, []);
 
   useEffect(() => {
+    lastSentElapsedRef.current = 0;
+    startTimeRef.current = Date.now();
+    setLookupMarks([]);
+    pageWidthRef.current = 595;
+    setZoom(isMobilePdfLayout() ? MOBILE_DEFAULT_ZOOM : 100);
+  }, [paperId]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setIsMobileLayout(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  const applyFitWidthZoom = useCallback(() => {
+    const cw = pdfScrollRef.current?.clientWidth ?? window.innerWidth;
+    const padding = isMobileLayout ? 12 : 24;
+    setZoom(computeFitWidthZoom(pageWidthRef.current, cw, padding));
+  }, [isMobileLayout]);
+
+  const handlePageDimensions = useCallback((width: number) => {
+    pageWidthRef.current = width;
+  }, []);
+
+  const zoomOptions = isMobileLayout ? PDF_ZOOM_OPTIONS_MOBILE : PDF_ZOOM_OPTIONS_DESKTOP;
+  const renderScale = zoomToRenderScale(zoom);
+
+  useEffect(() => {
     const timer = setInterval(() => {
       if (!paperId) return;
       const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
-      import('@/services/api').then(({ examApi }) => {
+      const delta = elapsed - lastSentElapsedRef.current;
+      if (delta <= 0) return;
+      lastSentElapsedRef.current = elapsed;
+      examApi.updateProgress(paperId, {
+        currentPage: currentPageRef.current,
+        totalPages: totalPagesRef.current,
+        timeSpent: delta,
+      }).catch(() => {});
+    }, 30000);
+    return () => {
+      clearInterval(timer);
+      if (!paperId) return;
+      const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      const delta = elapsed - lastSentElapsedRef.current;
+      if (delta > 0) {
         examApi.updateProgress(paperId, {
           currentPage: currentPageRef.current,
           totalPages: totalPagesRef.current,
-          timeSpent: elapsed,
+          timeSpent: delta,
         }).catch(() => {});
-      });
-    }, 30000);
-    return () => clearInterval(timer);
+      }
+    };
   }, [paperId]);
 
   /* ── 答案列表 ── */
@@ -107,73 +164,108 @@ const PaperViewer = () => {
   /* ── 查词 / 翻译 ── */
   const [lookupPos, setLookupPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  const handleSentenceTranslate = useCallback(async () => {
-    const sel = window.getSelection();
-    const text = sel?.toString().trim();
+  const runLookup = useCallback(async (range: Range, pageIndex: number) => {
+    const text = range.toString().trim();
     if (!text) return;
 
-    // 计算弹窗位置：跟随选中区域
-    const range = sel?.getRangeAt(0);
-    const rect = range?.getBoundingClientRect();
-    if (rect) {
-      const popupW = 384; // w-96 = 24rem = 384px
-      const popupH = 400;
+    const pageEl = document.querySelector(
+      `[data-page-index="${pageIndex}"][data-rendered="true"]`,
+    ) as HTMLElement | null;
+    if (pageEl) {
+      const mark = captureLookupMark(range, pageEl);
+      if (mark.rects.length) setLookupMarks((prev) => [...prev, mark]);
+    }
+
+    const rect = range.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const isMobileLayout = vw < 768;
+    const popupW = isMobileLayout ? vw - 16 : 384;
+    const popupH = isMobileLayout ? Math.min(vh * 0.45, 360) : 400;
+
+    if (isMobileLayout) {
+      setLookupPos({ x: -1, y: -1 });
+    } else {
       let x = rect.left + rect.width / 2 - popupW / 2;
-      let y = rect.top - popupH - 12; // 默认在选区上方
-      if (y < 8) y = rect.bottom + 12; // 上方不够则放下方
+      let y = rect.top - popupH - 12;
+      if (y < 8) y = rect.bottom + 12;
       if (x < 8) x = 8;
-      if (x + popupW > window.innerWidth - 8) x = window.innerWidth - popupW - 8;
+      if (x + popupW > vw - 8) x = vw - popupW - 8;
       setLookupPos({ x, y });
     }
 
     const word = text.split(/\s+/)[0].replace(/[^a-zA-Z'-]/g, '');
-    const isSingleWord = word.length >= 2 && word.length <= 30;
+    const isSingleWord = word.length >= 2 && word.length <= 30 && text.split(/\s+/).length === 1;
 
     setLookupLoading(true);
-    setLookupResult({ text, dict: null, zh: '' });
+    setLookupResult({ text: isSingleWord ? word : text, dict: null, zh: '' });
+    setSavedToVocab(false);
 
     try {
       if (isSingleWord) {
-        const dictRes = await dictionaryApi.lookup(word).catch(() => null);
-        setLookupResult({ text: word, dict: dictRes, zh: dictRes?.wordZh || '' });
-        setSavedToVocab(false);
-        // 自动加入生词本
-        if (dictRes && dictRes.meanings?.length > 0) {
+        const cacheKey = `${word}:zh`;
+        const cached = dictCacheRef.current.get(cacheKey);
+        const dictRes = cached ?? await dictionaryApi.lookup(word, true);
+        if (!cached) dictCacheRef.current.set(cacheKey, dictRes);
+
+        const headlineZh = pickDictHeadlineZh(dictRes);
+        setLookupResult({ text: word, dict: dictRes, zh: headlineZh });
+        setLookupLoading(false);
+
+        if (!headlineZh) {
+          translateApi.translate(word, 'en', 'zh-CN').then((zhRes) => {
+            setLookupResult((prev) =>
+              prev?.text === word ? { ...prev, zh: zhRes.translated || '' } : prev,
+            );
+          }).catch(() => {});
+        }
+
+        if (dictRes?.meanings?.length > 0) {
           const meaning = dictRes.meanings[0];
           const firstDef = meaning.definitions[0];
           addVocab.mutate({
             word: dictRes.word,
             pronunciation: dictRes.phonetic || '',
             definition: firstDef?.definition || '',
-            chineseDefinition: dictRes.wordZh || meaning.definitionsZh?.[0] || '',
+            chineseDefinition: pickChineseForVocab(dictRes),
             example: firstDef?.example || '',
           }, {
             onSuccess: () => setSavedToVocab(true),
-            onError: () => {}, // 重复单词忽略
+            onError: () => {},
           });
         }
       } else {
         const zhRes = await translateApi.translate(text, 'en', 'zh-CN');
         setLookupResult({ text, dict: null, zh: zhRes.translated || '翻译失败' });
+        setLookupLoading(false);
       }
     } catch {
       setLookupResult({ text, dict: null, zh: '翻译失败' });
-    } finally {
       setLookupLoading(false);
     }
-  }, []);
+  }, [addVocab]);
 
-  /* ── 取词查词（PDF 文字层选中） ── */
-  const handleWordSelect = useCallback((_text: string, _rect: DOMRect) => {
-    handleSentenceTranslate();
-  }, [handleSentenceTranslate]);
+  const handleSentenceTranslate = useCallback(() => {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.toString().trim()) return;
+    const range = sel.getRangeAt(0);
+    const ancestor = range.commonAncestorContainer;
+    const parentEl = ancestor instanceof HTMLElement ? ancestor : ancestor.parentElement;
+    const pageEl = parentEl?.closest('[data-page-index]') as HTMLElement | null;
+    const pageIndex = Number(pageEl?.dataset.pageIndex ?? 0);
+    runLookup(range, pageIndex);
+    sel.removeAllRanges();
+  }, [runLookup]);
+
+  const handleWordSelect = useCallback((_text: string, pageIndex: number, range: Range) => {
+    runLookup(range, pageIndex);
+  }, [runLookup]);
 
   /* ── 快捷键 ── */
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'x') {
-        e.preventDefault();
-        handleSentenceTranslate();
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key.toLowerCase() === 'x') { e.preventDefault(); handleSentenceTranslate(); }
       }
       if (e.key === 'Escape') {
         setLookupResult(null);
@@ -183,13 +275,6 @@ const PaperViewer = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleSentenceTranslate]);
-
-  const toggleAudio = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
-    setIsPlaying(!isPlaying);
-  };
 
   const handleFullscreen = () => {
     const el = viewerRef.current;
@@ -206,13 +291,12 @@ const PaperViewer = () => {
     a.click();
   };
 
-  const formatTime = (s: number) => {
-    const m = Math.floor(s / 60);
-    const sec = Math.floor(s % 60);
-    return `${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-  };
-
   const hasListening = categorySlug === 'cet4' || categorySlug === 'cet6' || categorySlug === 'tem';
+  const listeningBarOffset = hasListening ? LISTENING_PLAYER_HEIGHT : 0;
+  const resolvedAudioUrl = useMemo(
+    () => resolveListeningAudioUrl(categorySlug, fullSlug, paper?.audioUrl),
+    [categorySlug, fullSlug, paper?.audioUrl],
+  );
 
   /* ── Loading / Not Found ── */
   if (isLoading) {
@@ -221,6 +305,14 @@ const PaperViewer = () => {
         <div className="animate-pulse text-[10px] font-bold uppercase tracking-[0.4em]" style={{ color: 'var(--text-muted)' }}>
           Loading...
         </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--bg)' }}>
+        <ErrorState message="无法加载试卷" onRetry={() => refetch()} backTo={`/${categorySlug}`} backLabel="返回列表" />
       </div>
     );
   }
@@ -237,39 +329,40 @@ const PaperViewer = () => {
   }
 
   return (
-    <div ref={viewerRef} className="h-screen flex flex-col font-['Manrope'] selection:bg-[var(--selection-bg)] overflow-hidden"
+    <div ref={viewerRef} className="paper-viewer-root h-screen flex flex-col font-['Manrope'] selection:bg-[var(--selection-bg)] overflow-hidden"
          style={{ backgroundColor: 'var(--bg)', color: 'var(--text-primary)' }}>
 
       {/* ─── Top Bar ─── */}
-      <div className="flex-shrink-0 border-b px-4 py-2 flex items-center justify-between gap-4"
+      <div className="flex-shrink-0 border-b px-3 md:px-4 py-2 flex items-center justify-between gap-2 md:gap-4"
            style={{ borderColor: 'var(--border)', backgroundColor: 'var(--nav-bg)' }}>
-        <div className="flex items-center gap-4 min-w-0">
+        <div className="flex items-center gap-2 md:gap-4 min-w-0 flex-1">
           <Link to={`/${categorySlug}`}
-            className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] hover:opacity-70 transition-opacity flex-shrink-0"
+            className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.15em] md:tracking-[0.2em] hover:opacity-70 transition-opacity flex-shrink-0"
             style={{ color: 'var(--text-secondary)' }}>
             <ArrowLeft size={14} />
-            返回
+            <span className="hidden sm:inline">返回</span>
           </Link>
-          <h1 className="text-[11px] font-bold truncate" style={{ color: 'var(--text-primary)' }}>
+          <h1 className="text-[10px] md:text-[11px] font-bold truncate" style={{ color: 'var(--text-primary)' }}>
             {paper.title}
           </h1>
         </div>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
           <button onClick={handleSentenceTranslate}
-            className="text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border hover:border-[var(--border-hover)] transition-colors"
-            style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}>
-            <Languages size={12} className="inline mr-1" />
-            翻译 (Ctrl+X)
+            className="text-[9px] font-bold uppercase tracking-widest px-2 md:px-3 py-1.5 border hover:border-[var(--border-hover)] transition-colors"
+            style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}
+            title="翻译选中内容">
+            <Languages size={12} className="inline md:mr-1" />
+            <span className="hidden md:inline">翻译 (Ctrl+X)</span>
           </button>
           <button onClick={handleFullscreen}
-            className="text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border hover:border-[var(--border-hover)] transition-colors"
+            className="hidden sm:inline-flex text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border hover:border-[var(--border-hover)] transition-colors"
             style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}>
             <Maximize size={12} className="inline mr-1" />
             全屏
           </button>
           <button onClick={handleDownload} disabled={!paper.pdfUrl}
-            className="text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border hover:border-[var(--border-hover)] transition-colors disabled:opacity-40"
+            className="hidden sm:inline-flex text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border hover:border-[var(--border-hover)] transition-colors disabled:opacity-40"
             style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}>
             <Download size={12} className="inline mr-1" />
             下载
@@ -277,35 +370,71 @@ const PaperViewer = () => {
         </div>
       </div>
 
+      <div className="flex-1 flex overflow-hidden">
       {/* ─── Main: PDF 全宽 ─── */}
-      <div className="flex-1 overflow-auto relative" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+      <div
+        ref={pdfScrollRef}
+        className="flex-1 overflow-auto relative pdf-scroll-viewport"
+        style={{
+          backgroundColor: 'var(--bg-secondary)',
+          WebkitOverflowScrolling: 'touch',
+          paddingBottom: listeningBarOffset,
+        }}
+      >
         {/* 缩放条 */}
-        <div className="sticky top-0 z-20 flex items-center justify-center gap-4 py-2 px-4"
+        <div className="sticky top-0 z-20 flex items-center justify-center gap-2 md:gap-4 py-1.5 md:py-2 px-2 md:px-4"
              style={{ backgroundColor: 'var(--nav-bg)', borderBottom: '1px solid var(--border)' }}>
-          <button onClick={() => setZoom(z => Math.max(50, z - 25))} className="hover:opacity-70" style={{ color: 'var(--text-secondary)' }}>
+          <button
+            onClick={() => setZoom((z) => Math.max(zoomOptions[0], z - (isMobileLayout ? 10 : 25)))}
+            className="hover:opacity-70 p-1"
+            style={{ color: 'var(--text-secondary)' }}
+            aria-label="缩小"
+          >
             <ZoomOut size={16} />
           </button>
-          <select value={zoom} onChange={(e) => setZoom(Number(e.target.value))}
-            className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border bg-transparent"
-            style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}>
-            {[50, 75, 100, 125, 150, 200, 300, 400].map(v => (
+          {isMobileLayout && (
+            <button
+              onClick={applyFitWidthZoom}
+              className="text-[9px] font-bold uppercase tracking-widest px-2 py-1 border"
+              style={{ borderColor: 'var(--border)', color: 'var(--text-secondary)' }}
+            >
+              适应
+            </button>
+          )}
+          <select
+            value={zoom}
+            onChange={(e) => setZoom(Number(e.target.value))}
+            className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border bg-transparent max-w-[4.5rem] md:max-w-none"
+            style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
+          >
+            {zoomOptions.map((v) => (
               <option key={v} value={v}>{v}%</option>
             ))}
           </select>
-          <button onClick={() => setZoom(z => Math.min(400, z + 25))} className="hover:opacity-70" style={{ color: 'var(--text-secondary)' }}>
+          <button
+            onClick={() => setZoom((z) => Math.min(zoomOptions[zoomOptions.length - 1], z + (isMobileLayout ? 10 : 25)))}
+            className="hover:opacity-70 p-1"
+            style={{ color: 'var(--text-secondary)' }}
+            aria-label="放大"
+          >
             <ZoomIn size={16} />
           </button>
         </div>
 
-        {/* PDF 内容 */}
-        <div className="flex flex-col items-center py-8 px-4">
+        {/* PDF 内容 — 移动端允许横向滑动查看页外区域 */}
+        <div className={`py-3 md:py-8 px-2 md:px-4 ${isMobileLayout ? 'pdf-scroll-content' : 'flex flex-col items-center w-full'}`}>
           {paper.pdfUrl ? (
-            <div className="border shadow-lg" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg-secondary)' }}>
+            <div
+              className={isMobileLayout ? 'pdf-scroll-inner' : 'w-full max-w-full md:border md:shadow-lg'}
+              style={isMobileLayout ? undefined : { borderColor: 'var(--border)', backgroundColor: 'var(--bg-secondary)' }}
+            >
               <PdfCanvas
                 url={paper.pdfUrl}
-                scale={zoom / 100 * 1.5}
-                className="w-full"
+                scale={renderScale}
+                className={isMobileLayout ? 'pdf-canvas-pan' : 'w-full'}
+                lookupMarks={lookupMarks}
                 onReady={handlePdfReady}
+                onPageDimensions={handlePageDimensions}
                 onPageChange={handlePageChange}
                 onWordSelect={handleWordSelect}
               />
@@ -323,6 +452,7 @@ const PaperViewer = () => {
           )}
         </div>
       </div>
+      </div>
 
       {/* ─── 悬浮「查答案」按钮 ─── */}
       <motion.button
@@ -330,7 +460,7 @@ const PaperViewer = () => {
         className="fixed z-40 flex items-center gap-2 shadow-lg transition-colors"
         style={{
           right: showAnswers ? 340 : 20,
-          bottom: 20,
+          bottom: 20 + listeningBarOffset,
           backgroundColor: showAnswers ? 'var(--text-primary)' : 'var(--card-bg)',
           color: showAnswers ? 'var(--bg)' : 'var(--text-primary)',
           border: `1px solid ${showAnswers ? 'var(--text-primary)' : 'var(--border)'}`,
@@ -371,132 +501,114 @@ const PaperViewer = () => {
               </button>
             </div>
 
-            {/* 听力区（仅 CET4/CET6/TEM） */}
-            {hasListening && (
-              <div className="flex-shrink-0 p-4 border-b" style={{ borderColor: 'var(--border)' }}>
-                {paper.audioUrl ? (
-                  <>
-                    <div className="flex items-center gap-3 mb-2">
-                      <button onClick={toggleAudio}
-                        className="w-8 h-8 flex items-center justify-center border rounded-full hover:border-[var(--border-hover)] transition-colors"
-                        style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}>
-                        {isPlaying ? '⏸' : '▶'}
-                      </button>
-                      <div className="flex-1">
-                        <div className="h-1 w-full rounded-full overflow-hidden" style={{ backgroundColor: 'var(--border)' }}>
-                          <div className="h-full rounded-full" style={{ width: `${audioProgress}%`, backgroundColor: 'var(--text-primary)' }} />
-                        </div>
-                        <div className="flex justify-between mt-1">
-                          <span className="text-[8px]" style={{ color: 'var(--text-muted)' }}>{formatTime(audioProgress * audioDuration / 100)}</span>
-                          <span className="text-[8px]" style={{ color: 'var(--text-muted)' }}>{formatTime(audioDuration)}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <audio ref={audioRef} src={paper.audioUrl}
-                      onTimeUpdate={() => {
-                        if (audioRef.current) setAudioProgress((audioRef.current.currentTime / audioRef.current.duration) * 100);
-                      }}
-                      onLoadedMetadata={() => { if (audioRef.current) setAudioDuration(audioRef.current.duration); }}
-                      onEnded={() => setIsPlaying(false)}
-                    />
-                  </>
-                ) : (
-                  <p className="text-[9px] text-center py-1" style={{ color: 'var(--text-muted)' }}>
-                    听力音频暂未上传
-                  </p>
-                )}
-                <button onClick={() => setShowTranscript(!showTranscript)}
-                  className="text-[9px] font-bold uppercase tracking-widest w-full py-1.5 border hover:border-[var(--border-hover)] transition-colors mt-2"
-                  style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}>
-                  听力原文
-                </button>
-                <AnimatePresence>
-                  {showTranscript && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-                      className="mt-2 overflow-hidden">
-                      <div className="text-[10px] leading-relaxed p-2 max-h-32 overflow-auto border"
-                           style={{ borderColor: 'var(--border)', color: 'var(--text-secondary)' }}>
-                        {paper.transcript || '听力原文暂未上传'}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
-
             {/* 题号列表 */}
             <div className="flex-1 overflow-auto p-4">
               {answerList.length > 0 ? (
-                <div className="grid grid-cols-5 gap-2">
-                  {answerList.map((item, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveAnswer(activeAnswer === idx ? null : idx)}
-                      className="relative text-center py-2 border transition-all"
-                      style={{
-                        borderColor: activeAnswer === idx ? 'var(--text-primary)' : 'var(--border)',
-                        backgroundColor: activeAnswer === idx ? 'var(--text-primary)' : 'transparent',
-                        color: activeAnswer === idx ? 'var(--bg)' : 'var(--text-primary)',
-                        fontSize: 11,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {item.num}
-                    </button>
-                  ))}
-                </div>
+                <>
+                  <div className="grid grid-cols-5 gap-2">
+                    {answerList.map((item, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveAnswer(activeAnswer === idx ? null : idx)}
+                        className="relative text-center py-2 border transition-all"
+                        style={{
+                          borderColor: activeAnswer === idx ? 'var(--text-primary)' : 'var(--border)',
+                          backgroundColor: activeAnswer === idx ? 'var(--text-primary)' : 'transparent',
+                          color: activeAnswer === idx ? 'var(--bg)' : 'var(--text-primary)',
+                          fontSize: 11,
+                          fontWeight: 700,
+                        }}
+                      >
+                        {item.num}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* 答案详情 */}
+                  <AnimatePresence>
+                    {activeAnswer !== null && answerList[activeAnswer] && (
+                      <motion.div
+                        key={activeAnswer}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.15 }}
+                        className="mt-4 p-3 border"
+                        style={{ borderColor: 'var(--border)', backgroundColor: 'var(--card-bg)' }}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted)' }}>
+                            第 {answerList[activeAnswer].num} 题
+                          </span>
+                          <button onClick={() => setActiveAnswer(null)} className="hover:opacity-70" style={{ color: 'var(--text-muted)' }}>
+                            <X size={12} />
+                          </button>
+                        </div>
+                        <p className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
+                          {answerList[activeAnswer].answer}
+                        </p>
+
+                        {/* 上一题 / 下一题 */}
+                        <div className="flex justify-between mt-3">
+                          <button
+                            disabled={activeAnswer === 0}
+                            onClick={() => setActiveAnswer(i => i !== null ? i - 1 : null)}
+                            className="text-[9px] font-bold uppercase tracking-widest px-3 py-1 border hover:border-[var(--border-hover)] transition-colors disabled:opacity-30"
+                            style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}
+                          >
+                            ← 上一题
+                          </button>
+                          <button
+                            disabled={activeAnswer >= answerList.length - 1}
+                            onClick={() => setActiveAnswer(i => i !== null ? i + 1 : null)}
+                            className="text-[9px] font-bold uppercase tracking-widest px-3 py-1 border hover:border-[var(--border-hover)] transition-colors disabled:opacity-30"
+                            style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}
+                          >
+                            下一题 →
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* 全部答案一览 */}
+                  <button
+                    onClick={() => setShowAllAnswers(v => !v)}
+                    className="mt-4 w-full text-[9px] font-bold uppercase tracking-widest py-2 border hover:border-[var(--border-hover)] transition-colors"
+                    style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}
+                  >
+                    {showAllAnswers ? '收起全部答案' : '查看全部答案'}
+                  </button>
+                  <AnimatePresence>
+                    {showAllAnswers && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="mt-2 overflow-hidden"
+                      >
+                        <div className="grid grid-cols-5 gap-1">
+                          {answerList.map((item, idx) => (
+                            <div
+                              key={idx}
+                              className="flex flex-col items-center py-1.5 border"
+                              style={{ borderColor: 'var(--border)', fontSize: 10 }}
+                            >
+                              <span style={{ color: 'var(--text-muted)', fontSize: 8 }}>{item.num}</span>
+                              <span className="font-bold" style={{ color: 'var(--text-primary)' }}>{item.answer}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </>
               ) : (
                 <p className="text-[10px] text-center py-8" style={{ color: 'var(--text-muted)' }}>
                   答案暂未上传
                 </p>
               )}
-
-              {/* 答案详情 */}
-              <AnimatePresence>
-                {activeAnswer !== null && answerList[activeAnswer] && (
-                  <motion.div
-                    key={activeAnswer}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.15 }}
-                    className="mt-4 p-3 border"
-                    style={{ borderColor: 'var(--border)', backgroundColor: 'var(--card-bg)' }}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted)' }}>
-                        第 {answerList[activeAnswer].num} 题
-                      </span>
-                      <button onClick={() => setActiveAnswer(null)} className="hover:opacity-70" style={{ color: 'var(--text-muted)' }}>
-                        <X size={12} />
-                      </button>
-                    </div>
-                    <p className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>
-                      {answerList[activeAnswer].answer}
-                    </p>
-
-                    {/* 上一题 / 下一题 */}
-                    <div className="flex justify-between mt-3">
-                      <button
-                        disabled={activeAnswer === 0}
-                        onClick={() => setActiveAnswer(i => i !== null ? i - 1 : null)}
-                        className="text-[9px] font-bold uppercase tracking-widest px-3 py-1 border hover:border-[var(--border-hover)] transition-colors disabled:opacity-30"
-                        style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}
-                      >
-                        ← 上一题
-                      </button>
-                      <button
-                        disabled={activeAnswer >= answerList.length - 1}
-                        onClick={() => setActiveAnswer(i => i !== null ? i + 1 : null)}
-                        className="text-[9px] font-bold uppercase tracking-widest px-3 py-1 border hover:border-[var(--border-hover)] transition-colors disabled:opacity-30"
-                        style={{ color: 'var(--text-secondary)', borderColor: 'var(--border)' }}
-                      >
-                        下一题 →
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </motion.div>
         )}
@@ -509,14 +621,22 @@ const PaperViewer = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="fixed z-50 border shadow-xl w-96 max-h-[60vh] overflow-hidden flex flex-col"
-            style={{
-              left: lookupPos.x,
-              top: lookupPos.y,
-              backgroundColor: 'var(--card-bg)',
-              borderColor: 'var(--border)',
-              borderRadius: 8,
-            }}
+            className={`fixed z-50 border shadow-xl overflow-hidden flex flex-col ${
+              lookupPos.x < 0
+                ? 'bottom-0 left-0 right-0 w-full max-h-[50vh] rounded-t-xl'
+                : 'w-96 max-h-[60vh] rounded-lg'
+            }`}
+            style={
+              lookupPos.x < 0
+                ? { backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }
+                : {
+                    left: lookupPos.x,
+                    top: lookupPos.y,
+                    backgroundColor: 'var(--card-bg)',
+                    borderColor: 'var(--border)',
+                    borderRadius: 8,
+                  }
+            }
           >
             {/* 头部 */}
             <div className="flex-shrink-0 flex items-center justify-between px-4 py-3 border-b"
@@ -535,14 +655,12 @@ const PaperViewer = () => {
             </div>
 
             {/* 内容（可滚动） */}
-            <div className="flex-1 overflow-y-auto p-4" style={{ maxHeight: 'calc(100vh - 120px)' }}>
+            <div className="flex-1 overflow-y-auto p-4" style={{ maxHeight: lookupPos.x < 0 ? 'calc(50vh - 48px)' : 'calc(100vh - 120px)' }}>
               {lookupLoading ? (
                 <p className="text-[10px] animate-pulse" style={{ color: 'var(--text-muted)' }}>查询中...</p>
               ) : lookupResult.dict ? (
-                /* ── 词典模式 ── */
                 <DictEntry dict={lookupResult.dict} zh={lookupResult.zh} />
               ) : (
-                /* ── 纯翻译模式（长句） ── */
                 <div>
                   <p className="text-[12px] mb-3 leading-relaxed font-['Instrument_Serif'] italic"
                      style={{ color: 'var(--text-muted)' }}>
@@ -558,75 +676,21 @@ const PaperViewer = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
-  );
-};
 
-/* ── 词典词条组件 ── */
-function DictEntry({ dict, zh }: { dict: DictionaryResult; zh: string }) {
-  const parts = dict.phonetic ? dict.phonetic.split(',').map(s => s.trim()) : [];
-
-  return (
-    <div>
-      {/* 单词 + 音标 + 中文 */}
-      <div className="mb-4">
-        <span className="font-['Instrument_Serif'] text-xl italic" style={{ color: 'var(--text-primary)' }}>
-          {dict.word}
-        </span>
-        {parts.length > 0 && (
-          <span className="ml-2 text-[13px]" style={{ color: 'var(--text-muted)' }}>
-            {parts[0]}
-          </span>
-        )}
-        {zh && (
-          <span className="ml-2 text-[12px]" style={{ color: 'var(--text-secondary)' }}>
-            {zh}
-          </span>
-        )}
-      </div>
-
-      {/* 各词性释义 */}
-      {dict.meanings.map((meaning, mi) => (
-        <div key={mi} className="mb-4">
-          {/* 词性标签 + 中文概要 */}
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-block text-[9px] font-bold uppercase tracking-widest px-2 py-0.5"
-                  style={{ backgroundColor: 'var(--surface)', color: 'var(--text-muted)', borderRadius: 2 }}>
-              {meaning.partOfSpeech}
-            </span>
-            {meaning.definitionsZh?.[0] && (
-              <span className="text-[12px]" style={{ color: 'var(--text-secondary)' }}>
-                {meaning.definitionsZh[0]}
-              </span>
-            )}
-          </div>
-
-          {/* 释义列表（英文 + 中文） */}
-          {meaning.definitions.map((def, di) => (
-            <div key={di} className="ml-1 mb-3 pl-3 border-l-2" style={{ borderColor: 'var(--border)' }}>
-              <p className="text-[13px] leading-relaxed" style={{ color: 'var(--text-primary)' }}>
-                {def.definition}
-              </p>
-              {meaning.definitionsZh?.[di] && (
-                <p className="text-[12px] mt-0.5" style={{ color: 'var(--text-secondary)' }}>
-                  {meaning.definitionsZh[di]}
-                </p>
-              )}
-              {def.example && (
-                <p className="text-[11px] mt-1 italic" style={{ color: 'var(--text-muted)' }}>
-                  "{def.example}"
-                </p>
-              )}
-            </div>
-          ))}
+      {hasListening && (
+        <div
+          className="fixed bottom-0 left-0 z-50 transition-[right] duration-300"
+          style={{ right: showAnswers ? 340 : 0 }}
+        >
+          <ListeningPlayerBar
+            audioUrl={resolvedAudioUrl}
+            audioTimeline={paper.audioTimeline}
+            transcript={paper.transcript}
+          />
         </div>
-      ))}
-
-      {dict.meanings.length === 0 && !zh && (
-        <p className="text-[11px]" style={{ color: 'var(--text-muted)' }}>未找到释义</p>
       )}
     </div>
   );
-}
+};
 
 export default PaperViewer;

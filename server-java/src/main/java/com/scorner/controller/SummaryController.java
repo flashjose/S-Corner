@@ -1,11 +1,13 @@
 package com.scorner.controller;
 
 import com.scorner.service.SummaryService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+@Profile("legacy")
 @RestController
 @RequestMapping("/api/summary")
 public class SummaryController {

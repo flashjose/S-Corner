@@ -2,10 +2,12 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useExamPapers } from '@/hooks/useExam';
 import PaperCover from '@/components/PaperCover';
+import ErrorState from '@/components/ErrorState';
+import type { ExamPaper } from '@/types/exam';
 import { ArrowLeft, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
-function PaperCoverImage({ paper, categorySlug }: { paper: any; categorySlug: string }) {
+function PaperCoverImage({ paper, categorySlug }: { paper: ExamPaper; categorySlug: string }) {
   const [imgFailed, setImgFailed] = useState(false);
   const hasCustomCover = paper.coverImage && !imgFailed;
 
@@ -34,7 +36,7 @@ function PaperCoverImage({ paper, categorySlug }: { paper: any; categorySlug: st
 
 const CategoryPage = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
-  const { data, isLoading } = useExamPapers(categorySlug!);
+  const { data, isLoading, isError, refetch } = useExamPapers(categorySlug!);
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set());
   const showMaxYears = 4;
 
@@ -50,7 +52,15 @@ const CategoryPage = () => {
     );
   }
 
-  if (!data || data.error) {
+  if (isError) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: 'var(--bg)' }}>
+        <ErrorState message="无法加载试卷列表" onRetry={() => refetch()} backTo="/" backLabel="首页" />
+      </div>
+    );
+  }
+
+  if (!data || 'error' in data) {
     return (
       <div className="min-h-screen flex items-center justify-center flex-col gap-4"
            style={{ backgroundColor: 'var(--bg)' }}>
@@ -111,7 +121,7 @@ const CategoryPage = () => {
             </h2>
 
             <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
-              {section.papers.map((paper: any, pIndex: number) => {
+              {section.papers.map((paper: ExamPaper, pIndex: number) => {
                 const progressPct = paper.progress
                   ? Math.round((paper.progress.currentPage / Math.max(paper.progress.totalPages, 1)) * 100)
                   : 0;

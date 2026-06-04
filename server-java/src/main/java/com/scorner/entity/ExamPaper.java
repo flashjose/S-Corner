@@ -53,6 +53,9 @@ public class ExamPaper {
     @Column(columnDefinition = "TEXT")
     private String transcript; // 听力原文
 
+    @Column(columnDefinition = "JSON")
+    private String audioTimeline; // 听力分段时间轴 JSON
+
     @Column(nullable = false)
     private Boolean isPublished = true;
 
@@ -105,6 +108,8 @@ public class ExamPaper {
     public void setAnswers(String answers) { this.answers = answers; }
     public String getTranscript() { return transcript; }
     public void setTranscript(String transcript) { this.transcript = transcript; }
+    public String getAudioTimeline() { return audioTimeline; }
+    public void setAudioTimeline(String audioTimeline) { this.audioTimeline = audioTimeline; }
     public Boolean getIsPublished() { return isPublished; }
     public void setIsPublished(Boolean isPublished) { this.isPublished = isPublished; }
     public LocalDateTime getCreatedAt() { return createdAt; }

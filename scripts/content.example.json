@@ -1,0 +1,22 @@
+{
+  "papers": [
+    {
+      "categorySlug": "cet4",
+      "slug": "2025-12/01",
+      "answers": {
+        "1": "A", "2": "B", "3": "C", "4": "D", "5": "A",
+        "6": "B", "7": "C", "8": "D", "9": "A", "10": "B"
+      },
+      "audioUrl": "/audio/cet4/2025-12-01.mp3",
+      "audioTimeline": {
+        "durationMs": 1368999,
+        "segments": [
+          { "label": "NEWS 1", "startMs": 39900, "type": "section" },
+          { "label": "1", "startMs": 105000, "type": "question" },
+          { "label": "2", "startMs": 123000, "type": "question" }
+        ]
+      },
+      "transcript": "示例听力原文：请在此处填入实际听力文本。"
+    }
+  ]
+}
