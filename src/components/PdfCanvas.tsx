@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+// Use a blob URL to avoid MIME type issues with .mjs files behind CDNs/Cloudflare
+const workerBlob = new Blob(
+  [`importScripts(new URL("${workerUrl}", self.location.origin + "/").href)`],
+  { type: 'application/javascript' },
+);
+pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(workerBlob);
 
 /** Normalized rect (0–1) relative to page dimensions — stable across zoom */
 interface LookupMarkRect {
