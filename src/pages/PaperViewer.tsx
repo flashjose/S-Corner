@@ -294,12 +294,12 @@ const PaperViewer = () => {
     a.click();
   };
 
-  const hasListening = categorySlug === 'cet4' || categorySlug === 'cet6' || categorySlug === 'tem';
-  const listeningBarOffset = hasListening ? LISTENING_PLAYER_HEIGHT : 0;
   const resolvedAudioUrl = useMemo(
     () => resolveListeningAudioUrl(categorySlug, fullSlug, paper?.audioUrl),
     [categorySlug, fullSlug, paper?.audioUrl],
   );
+  const hasListening = !!resolvedAudioUrl && (categorySlug === 'cet4' || categorySlug === 'cet6' || categorySlug === 'tem');
+  const listeningBarOffset = hasListening ? LISTENING_PLAYER_HEIGHT : 0;
 
   /* ── Loading / Not Found ── */
   if (isLoading) {
