@@ -37,6 +37,14 @@ app:
   dictionary:
     local-enabled: ${DICT_LOCAL_ENABLED:true}
     remote-fallback: ${DICT_REMOTE_FALLBACK:true}
+  jwt:
+    secret: ${JWT_SECRET:dev-only-change-me-in-production-32chars}
+    expiry-hours: ${JWT_EXPIRY_HOURS:168}
+  oauth:
+    frontend-callback-url: ${OAUTH_FRONTEND_CALLBACK:http://localhost:5173/auth/callback}
+    github:
+      client-id: ${GITHUB_CLIENT_ID:}
+      client-secret: ${GITHUB_CLIENT_SECRET:}
 
 logging:
   level:

@@ -306,7 +306,7 @@ public class DictionaryService {
 
 
                 if (includeZh) {
-                    attachRemoteChinese(meanings, normalizedWord, result);
+                    attachRemoteChinese(meanings, result);
                 }
 
 
@@ -340,13 +340,9 @@ public class DictionaryService {
     @SuppressWarnings("unchecked")
     private void attachRemoteChinese(
             List<Map<String, Object>> meanings,
-            String normalizedWord,
             Map<String, Object> result) {
         List<String> texts = new ArrayList<>();
         List<ZhSlot> slots = new ArrayList<>();
-
-        texts.add("请用简体中文写出英语单词「" + normalizedWord + "」在词典中的常用释义，只要中文一行，不要英文和音标");
-        slots.add(ZhSlot.word());
 
         int defCount = 0;
         for (Map<String, Object> meaning : meanings) {
@@ -379,6 +375,10 @@ public class DictionaryService {
             }
         }
 
+        if (texts.isEmpty()) {
+            return;
+        }
+
         List<String> translated;
         try {
             translated = translateService.batchTranslate(texts, "en", "zh-CN");
@@ -388,13 +388,7 @@ public class DictionaryService {
 
         if (translated.isEmpty()) return;
 
-        String wordZh = sanitizeChineseGloss(translated.get(0));
-        if (!wordZh.isEmpty()) {
-            result.put("wordZh", wordZh);
-        }
-
         for (Map<String, Object> meaning : meanings) {
-            @SuppressWarnings("unchecked")
             List<Map<String, Object>> definitions =
                 (List<Map<String, Object>>) meaning.get("definitions");
             if (definitions == null || definitions.isEmpty()) continue;
@@ -406,11 +400,10 @@ public class DictionaryService {
         }
 
         for (int i = 0; i < slots.size(); i++) {
-            String zh = i + 1 < translated.size() ? translated.get(i + 1) : "";
+            String zh = i < translated.size() ? translated.get(i) : "";
             zh = zh != null ? zh.trim() : "";
             ZhSlot slot = slots.get(i);
             if (slot.kind == ZhSlot.KIND_DEFINITION) {
-                @SuppressWarnings("unchecked")
                 List<String> definitionsZh = (List<String>) slot.meaning.get("definitionsZh");
                 int defIndex = indexOfDef(slot.meaning, slot.def);
                 if (definitionsZh != null && defIndex >= 0 && defIndex < definitionsZh.size()) {
@@ -420,6 +413,31 @@ public class DictionaryService {
                 slot.def.put("exampleZh", zh);
             }
         }
+
+        String wordZh = pickWordZhFromMeanings(meanings);
+        if (!wordZh.isEmpty()) {
+            result.put("wordZh", wordZh);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static String pickWordZhFromMeanings(List<Map<String, Object>> meanings) {
+        for (Map<String, Object> meaning : meanings) {
+            List<String> definitionsZh = (List<String>) meaning.get("definitionsZh");
+            if (definitionsZh == null) continue;
+            for (String zh : definitionsZh) {
+                if (zh == null || zh.isBlank()) continue;
+                String cleaned = sanitizeChineseGloss(zh);
+                if (!cleaned.isEmpty() && !looksLikePromptEcho(cleaned)) {
+                    return cleaned;
+                }
+            }
+        }
+        return "";
+    }
+
+    private static boolean looksLikePromptEcho(String text) {
+        return text.contains("请用简体中文") || text.contains("英语单词");
     }
 
     @SuppressWarnings("unchecked")
@@ -442,7 +460,6 @@ public class DictionaryService {
     }
 
     private static final class ZhSlot {
-        static final int KIND_WORD = 0;
         static final int KIND_DEFINITION = 1;
         static final int KIND_EXAMPLE = 2;
 
@@ -454,10 +471,6 @@ public class DictionaryService {
             this.kind = kind;
             this.meaning = meaning;
             this.def = def;
-        }
-
-        static ZhSlot word() {
-            return new ZhSlot(KIND_WORD, null, null);
         }
 
         static ZhSlot definition(Map<String, Object> meaning, Map<String, Object> def) {

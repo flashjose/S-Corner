@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useVocabulary, useDeleteVocabulary } from '@/hooks/useVocabulary';
 import type { VocabularyItem } from '@/types/vocabulary';
@@ -7,6 +8,7 @@ import { dictionaryApi, translateApi } from '@/services/api';
 import DictEntry from '@/components/DictEntry';
 import { pickDictHeadlineZh } from '@/utils/dictDisplay';
 import ErrorState from '@/components/ErrorState';
+import { useAuthStore } from '@/stores/authStore';
 import { Search, Trash2, BookOpen, ChevronDown } from 'lucide-react';
 
 const dictCache = new Map<string, DictionaryResult>();
@@ -148,13 +150,40 @@ function VocabularyCard({ item, index, onDelete }: VocabularyCardProps) {
 
 const VocabularyPage = () => {
   const [search, setSearch] = useState('');
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
+  const hydrated = useAuthStore((s) => s.hydrated);
 
   const params: Record<string, string> = {};
   if (search) params.search = search;
 
-  const { data, isLoading, isError, refetch } = useVocabulary(params);
+  const { data, isLoading, isError, refetch } = useVocabulary(params, isAuthenticated);
   const deleteVocab = useDeleteVocabulary();
   const vocabularies: VocabularyItem[] = data?.vocabularies || [];
+
+  if (hydrated && !isAuthenticated) {
+    return (
+      <div className="min-h-screen font-['Manrope'] selection:bg-[var(--selection-bg)]"
+           style={{ backgroundColor: 'var(--bg)', color: 'var(--text-primary)' }}>
+        <div className="max-w-3xl mx-auto px-6 md:px-10 pt-28 pb-20 text-center">
+          <BookOpen size={32} className="mx-auto mb-4" style={{ color: 'var(--text-muted)' }} />
+          <h1 className="font-['Instrument_Serif'] text-4xl md:text-5xl italic mb-4"
+              style={{ color: 'var(--text-primary)' }}>
+            Vocabulary
+          </h1>
+          <p className="text-sm mb-8" style={{ color: 'var(--text-secondary)' }}>
+            登录后即可同步与管理你的生词本
+          </p>
+          <Link
+            to="/login"
+            className="inline-block px-8 py-3 text-[10px] font-bold uppercase tracking-[0.3em] border hover:opacity-70 transition-opacity"
+            style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
+          >
+            登录 / 注册
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen font-['Manrope'] selection:bg-[var(--selection-bg)]"

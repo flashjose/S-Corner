@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import NoiseOverlay from '@/components/NoiseOverlay';
@@ -9,7 +9,11 @@ import { isPaperViewerPath } from '@/utils/routes';
 import HomePage from '@/pages/HomePage';
 import CategoryPage from '@/pages/CategoryPage';
 import VocabularyPage from '@/pages/VocabularyPage';
+import LoginPage from '@/pages/LoginPage';
+import RegisterPage from '@/pages/RegisterPage';
+import AuthCallbackPage from '@/pages/AuthCallbackPage';
 import { useAppStore } from '@/stores/appStore';
+import { useAuthStore } from '@/stores/authStore';
 
 const PaperViewer = lazy(() => import('@/pages/PaperViewer'));
 
@@ -21,19 +25,66 @@ const NAV_ITEMS = [
   { to: '/vocabulary', label: 'Vocabulary' },
 ];
 
+function NavAuth() {
+  const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
+  const navigate = useNavigate();
+  const isAuthPage = ['/login', '/register', '/auth/callback'].includes(useLocation().pathname);
+
+  if (isAuthPage) return null;
+
+  if (user) {
+    return (
+      <div className="hidden md:flex items-center gap-4">
+        <span className="opacity-70 truncate max-w-[120px]" style={{ color: 'var(--text-secondary)' }}>
+          {user.displayName}
+        </span>
+        <button
+          type="button"
+          onClick={() => { logout(); navigate('/'); }}
+          className="opacity-50 hover:opacity-100 hover:line-through transition-all"
+          style={{ color: 'var(--text-secondary)' }}
+        >
+          退出
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      to="/login"
+      className="hidden md:block opacity-50 hover:opacity-100 hover:line-through transition-all"
+      style={{ color: 'var(--text-secondary)' }}
+    >
+      登录
+    </Link>
+  );
+}
+
 const AppLayout = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isPaperViewer = isPaperViewerPath(location.pathname);
+  const isAuthPage = ['/login', '/register', '/auth/callback'].includes(location.pathname);
   const mobileNavOpen = useAppStore((s) => s.mobileNavOpen);
   const setMobileNavOpen = useAppStore((s) => s.setMobileNavOpen);
+  const user = useAuthStore((s) => s.user);
+  const logout = useAuthStore((s) => s.logout);
+  const navigate = useNavigate();
+  const hydrateAuth = useAuthStore((s) => s.hydrate);
+
+  useEffect(() => {
+    hydrateAuth();
+  }, [hydrateAuth]);
 
   return (
     <div className="min-h-screen font-['Manrope'] selection:bg-[var(--selection-bg)] overflow-x-hidden"
          style={{ backgroundColor: 'var(--bg)', color: 'var(--text-primary)' }}>
-      {!isPaperViewer && <NoiseOverlay />}
+      {!isPaperViewer && !isAuthPage && <NoiseOverlay />}
       <InkFilters />
 
+      {!isAuthPage && (
       <nav
         className={`fixed top-0 w-full px-6 md:px-10 flex justify-between items-center z-50 ${
           isHomePage ? 'p-6 md:p-10' : 'py-4 backdrop-blur-sm border-b'
@@ -60,6 +111,7 @@ const AppLayout = () => {
               {item.label}
             </Link>
           ))}
+          <NavAuth />
           <ThemeToggle />
           <button
             className="md:hidden hover:opacity-70"
@@ -71,8 +123,10 @@ const AppLayout = () => {
           </button>
         </div>
       </nav>
+      )}
 
       {/* Mobile drawer */}
+      {!isAuthPage && (
       <AnimatePresence>
         {mobileNavOpen && (
           <>
@@ -103,10 +157,33 @@ const AppLayout = () => {
                   {item.label}
                 </Link>
               ))}
+              {user ? (
+                <>
+                  <span className="text-[11px] opacity-70" style={{ color: 'var(--text-muted)' }}>{user.displayName}</span>
+                  <button
+                    type="button"
+                    onClick={() => { logout(); setMobileNavOpen(false); navigate('/'); }}
+                    className="text-[11px] font-bold uppercase tracking-[0.3em] text-left hover:opacity-70"
+                    style={{ color: 'var(--text-secondary)' }}
+                  >
+                    退出
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={() => setMobileNavOpen(false)}
+                  className="text-[11px] font-bold uppercase tracking-[0.3em] hover:opacity-70"
+                  style={{ color: 'var(--text-secondary)' }}
+                >
+                  登录
+                </Link>
+              )}
             </motion.div>
           </>
         )}
       </AnimatePresence>
+      )}
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -118,6 +195,10 @@ const AppLayout = () => {
         >
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/auth/callback" element={<AuthCallbackPage />} />
+            <Route path="/vocabulary" element={<VocabularyPage />} />
             <Route path="/:categorySlug" element={<CategoryPage />} />
             <Route
               path="/:categorySlug/:paperSlug/*"
@@ -131,7 +212,6 @@ const AppLayout = () => {
                 </Suspense>
               }
             />
-            <Route path="/vocabulary" element={<VocabularyPage />} />
           </Routes>
         </motion.div>
       </AnimatePresence>

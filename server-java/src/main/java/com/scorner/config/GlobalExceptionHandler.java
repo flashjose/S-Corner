@@ -24,6 +24,19 @@ public class GlobalExceptionHandler {
                 .body(Map.of("error", message));
         }
 
+        if (message != null && (message.contains("Invalid credentials")
+            || message.contains("Unauthorized")
+            || message.equals("Unauthorized"))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of("error", message));
+        }
+
+        if (message != null && (message.contains("required") || message.contains("Invalid email")
+            || message.contains("Password must"))) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("error", message));
+        }
+
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(Map.of("error", message != null ? message : "Internal server error"));
     }

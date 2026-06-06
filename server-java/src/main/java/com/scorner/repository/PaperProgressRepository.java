@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PaperProgressRepository extends JpaRepository<PaperProgress, String> {
 
-    Optional<PaperProgress> findByPaperId(String paperId);
+    Optional<PaperProgress> findByUserIdAndPaperId(String userId, String paperId);
 }

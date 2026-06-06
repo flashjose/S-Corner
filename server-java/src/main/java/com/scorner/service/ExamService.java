@@ -16,15 +16,18 @@ public class ExamService {
     private final ExamPaperRepository paperRepository;
     private final PaperAnnotationRepository annotationRepository;
     private final PaperProgressRepository progressRepository;
+    private final CurrentUserService currentUserService;
 
     public ExamService(ExamCategoryRepository categoryRepository,
                        ExamPaperRepository paperRepository,
                        PaperAnnotationRepository annotationRepository,
-                       PaperProgressRepository progressRepository) {
+                       PaperProgressRepository progressRepository,
+                       CurrentUserService currentUserService) {
         this.categoryRepository = categoryRepository;
         this.paperRepository = paperRepository;
         this.annotationRepository = annotationRepository;
         this.progressRepository = progressRepository;
+        this.currentUserService = currentUserService;
     }
 
     // ── 分类 ──
@@ -70,15 +73,16 @@ public class ExamService {
             paperMap.put("month", paper.getMonth());
             paperMap.put("setId", paper.getSetId());
 
-            // 进度
-            PaperProgress progress = progressRepository.findByPaperId(paper.getId()).orElse(null);
-            if (progress != null) {
-                paperMap.put("progress", Map.of(
-                    "currentPage", progress.getCurrentPage(),
-                    "totalPages", progress.getTotalPages(),
-                    "isCompleted", progress.getIsCompleted()
-                ));
-            }
+            // 进度（仅登录用户）
+            currentUserService.getCurrentUserIdOptional().ifPresent(userId -> {
+                progressRepository.findByUserIdAndPaperId(userId, paper.getId()).ifPresent(progress -> {
+                    paperMap.put("progress", Map.of(
+                        "currentPage", progress.getCurrentPage(),
+                        "totalPages", progress.getTotalPages(),
+                        "isCompleted", progress.getIsCompleted()
+                    ));
+                });
+            });
 
             grouped.get(groupKey).add(paperMap);
         }
@@ -138,16 +142,17 @@ public class ExamService {
         result.put("setId", p.getSetId());
         result.put("categorySlug", categorySlug);
 
-        // 进度
-        PaperProgress progress = progressRepository.findByPaperId(p.getId()).orElse(null);
-        if (progress != null) {
-            result.put("progress", Map.of(
-                "currentPage", progress.getCurrentPage(),
-                "totalPages", progress.getTotalPages(),
-                "timeSpent", progress.getTimeSpent(),
-                "isCompleted", progress.getIsCompleted()
-            ));
-        }
+        // 进度（仅登录用户）
+        currentUserService.getCurrentUserIdOptional().ifPresent(userId -> {
+            progressRepository.findByUserIdAndPaperId(userId, p.getId()).ifPresent(progress -> {
+                result.put("progress", Map.of(
+                    "currentPage", progress.getCurrentPage(),
+                    "totalPages", progress.getTotalPages(),
+                    "timeSpent", progress.getTimeSpent(),
+                    "isCompleted", progress.getIsCompleted()
+                ));
+            });
+        });
 
         return Optional.of(result);
     }
@@ -230,14 +235,17 @@ public class ExamService {
     // ── 标注 ──
 
     public List<PaperAnnotation> getAnnotations(String paperId) {
-        return annotationRepository.findByPaperIdOrderByPageIndexAsc(paperId);
+        String userId = currentUserService.getCurrentUserId();
+        return annotationRepository.findByUserIdAndPaperIdOrderByPageIndexAsc(userId, paperId);
     }
 
     @Transactional
     public PaperAnnotation createAnnotation(String paperId, Integer pageIndex, String type,
                                              String selectedText, String color, String textContent,
                                              String drawingData, String positionData, String note) {
+        String userId = currentUserService.getCurrentUserId();
         PaperAnnotation ann = new PaperAnnotation();
+        ann.setUserId(userId);
         ann.setPaperId(paperId);
         ann.setPageIndex(pageIndex);
         ann.setType(type);
@@ -252,14 +260,18 @@ public class ExamService {
 
     @Transactional
     public void deleteAnnotation(String id) {
-        annotationRepository.deleteById(id);
+        String userId = currentUserService.getCurrentUserId();
+        PaperAnnotation ann = annotationRepository.findByIdAndUserId(id, userId)
+            .orElseThrow(() -> new RuntimeException("Annotation not found: " + id));
+        annotationRepository.delete(ann);
     }
 
     // ── 进度 ──
 
     @Transactional
     public PaperProgress updateProgress(String paperId, Map<String, Object> fields) {
-        Optional<PaperProgress> existing = progressRepository.findByPaperId(paperId);
+        String userId = currentUserService.getCurrentUserId();
+        Optional<PaperProgress> existing = progressRepository.findByUserIdAndPaperId(userId, paperId);
 
         PaperProgress progress;
         if (existing.isPresent()) {
@@ -277,6 +289,7 @@ public class ExamService {
             progress.setLastReadAt(LocalDateTime.now());
         } else {
             progress = new PaperProgress();
+            progress.setUserId(userId);
             progress.setPaperId(paperId);
             progress.setCurrentPage(fields.containsKey("currentPage") ? MapUtils.getInt(fields, "currentPage") : 0);
             progress.setTotalPages(fields.containsKey("totalPages") ? MapUtils.getInt(fields, "totalPages") : 0);

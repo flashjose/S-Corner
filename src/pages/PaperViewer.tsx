@@ -20,6 +20,7 @@ import {
 } from '@/utils/pdfZoom';
 import { resolveListeningAudioUrl } from '@/utils/listeningAudio';
 import { pickChineseForVocab, pickDictHeadlineZh } from '@/utils/dictDisplay';
+import { useAuthStore } from '@/stores/authStore';
 
 /* ── 答案解析 ── */
 function parseAnswers(raw: string): { num: string; answer: string }[] {
@@ -74,6 +75,7 @@ const PaperViewer = () => {
   const [activeAnswer, setActiveAnswer] = useState<number | null>(null);
 
   const addVocab = useAddVocabulary();
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
 
   /* ── 查词 / 翻译 popup ── */
   type LookupResult = {
@@ -128,6 +130,7 @@ const PaperViewer = () => {
   const renderScale = zoomToRenderScale(zoom);
 
   useEffect(() => {
+    if (!isAuthenticated) return;
     const timer = setInterval(() => {
       if (!paperId) return;
       const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
@@ -153,7 +156,7 @@ const PaperViewer = () => {
         }).catch(() => {});
       }
     };
-  }, [paperId]);
+  }, [paperId, isAuthenticated]);
 
   /* ── 答案列表 ── */
   const answerList = useMemo(() => {
@@ -220,7 +223,7 @@ const PaperViewer = () => {
           }).catch(() => {});
         }
 
-        if (dictRes?.meanings?.length > 0) {
+        if (dictRes?.meanings?.length > 0 && isAuthenticated) {
           const meaning = dictRes.meanings[0];
           const firstDef = meaning.definitions[0];
           addVocab.mutate({
@@ -243,7 +246,7 @@ const PaperViewer = () => {
       setLookupResult({ text, dict: null, zh: '翻译失败' });
       setLookupLoading(false);
     }
-  }, [addVocab]);
+  }, [addVocab, isAuthenticated]);
 
   const handleSentenceTranslate = useCallback(() => {
     const sel = window.getSelection();
@@ -648,6 +651,11 @@ const PaperViewer = () => {
                 <span className="flex items-center gap-1 text-[9px]" style={{ color: 'var(--text-secondary)' }}>
                   <BookOpen size={10} /> 已加入生词本
                 </span>
+              )}
+              {!isAuthenticated && lookupResult.dict && !lookupLoading && (
+                <Link to="/login" className="text-[9px] underline opacity-70 hover:opacity-100" style={{ color: 'var(--text-muted)' }}>
+                  登录保存生词
+                </Link>
               )}
               <button onClick={() => setLookupResult(null)} className="hover:opacity-70" style={{ color: 'var(--text-muted)' }}>
                 <X size={14} />

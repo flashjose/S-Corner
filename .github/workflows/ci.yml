@@ -46,4 +46,5 @@ jobs:
           DB_URL: jdbc:mysql://localhost:3306/s_corner?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
           DB_USERNAME: root
           DB_PASSWORD: testpass
+          JWT_SECRET: test-secret-for-ci-must-be-at-least-32-bytes-long
         run: mvn test -B

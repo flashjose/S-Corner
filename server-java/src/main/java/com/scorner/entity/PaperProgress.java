@@ -9,7 +9,10 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "paper_progress", indexes = {
-    @Index(name = "idx_pp_paper", columnList = "paper_id")
+    @Index(name = "idx_pp_paper", columnList = "paper_id"),
+    @Index(name = "idx_pp_user", columnList = "userId")
+}, uniqueConstraints = {
+    @UniqueConstraint(name = "uk_pp_user_paper", columnNames = {"userId", "paperId"})
 })
 public class PaperProgress {
 
@@ -17,7 +20,10 @@ public class PaperProgress {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
+    private String userId;
+
+    @Column(nullable = false)
     private String paperId;
 
     @Column(nullable = false)
@@ -52,6 +58,8 @@ public class PaperProgress {
     // ── Getters & Setters ──
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) { this.userId = userId; }
     public String getPaperId() { return paperId; }
     public void setPaperId(String paperId) { this.paperId = paperId; }
     public Integer getCurrentPage() { return currentPage; }

@@ -7,14 +7,30 @@ import type {
   DictionaryResult,
 } from '@/types/exam';
 import type { VocabularyItem, VocabularyListResponse } from '@/types/vocabulary';
+import type { AuthResponse, AuthProviders, AuthUser } from '@/types/auth';
+import { getAuthToken, useAuthStore } from '@/stores/authStore';
 
 const BASE_URL = '/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const token = getAuthToken();
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(options?.headers as Record<string, string> | undefined),
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   const res = await fetch(`${BASE_URL}${path}`, {
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
     ...options,
+    headers,
   });
+
+  if (res.status === 401 && token) {
+    useAuthStore.getState().logout();
+  }
+
   if (!res.ok) {
     const error = await res.json().catch(() => ({ error: 'Request failed' }));
     throw new Error(error.error || `HTTP ${res.status}`);
@@ -40,6 +56,22 @@ export interface UpdateProgressPayload {
   timeSpent?: number;
   isCompleted?: boolean;
 }
+
+export const authApi = {
+  register: (email: string, password: string, displayName?: string) =>
+    request<AuthResponse>('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, displayName }),
+    }),
+  login: (email: string, password: string) =>
+    request<AuthResponse>('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    }),
+  me: () => request<AuthUser>('/auth/me'),
+  providers: () => request<AuthProviders>('/auth/providers'),
+  githubOAuthUrl: () => `${BASE_URL}/auth/oauth/github`,
+};
 
 export const examApi = {
   categories: () => request<ExamCategory[]>('/exam/categories'),

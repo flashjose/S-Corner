@@ -1,8 +1,9 @@
 import type { DictionaryResult } from '@/types/exam';
 
-/** 清理词头中文（去掉 up/ap/上涨 等混杂内容） */
+/** 清理词头中文（去掉 up/ap/上涨 等混杂内容，以及误译的提示语片段） */
 export function sanitizeWordZh(raw?: string | null): string {
   if (!raw?.trim()) return '';
+  if (/请用简体中文|英语单词/.test(raw)) return '';
   const m = raw.match(/[\u4e00-\u9fff][\u4e00-\u9fff\s·；，、：:（）()\-]*/);
   return m ? m[0].trim() : raw.trim();
 }

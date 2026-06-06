@@ -14,15 +14,22 @@ import java.util.Optional;
 @Repository
 public interface VocabularyRepository extends JpaRepository<Vocabulary, String> {
 
-    Optional<Vocabulary> findByWord(String word);
+    Optional<Vocabulary> findByUserIdAndWord(String userId, String word);
 
-    @Query("SELECT v FROM Vocabulary v WHERE v.word LIKE %:keyword% OR v.chineseDefinition LIKE %:keyword%")
-    Page<Vocabulary> searchByKeyword(@Param("keyword") String keyword, Pageable pageable);
+    @Query("SELECT v FROM Vocabulary v WHERE v.userId = :userId AND (v.word LIKE %:keyword% OR v.chineseDefinition LIKE %:keyword%)")
+    Page<Vocabulary> searchByUserAndKeyword(@Param("userId") String userId, @Param("keyword") String keyword, Pageable pageable);
 
-    Page<Vocabulary> findByMasteryLevel(Integer masteryLevel, Pageable pageable);
+    Page<Vocabulary> findByUserIdAndMasteryLevel(String userId, Integer masteryLevel, Pageable pageable);
 
-    Page<Vocabulary> findBySourceArticleId(String sourceArticleId, Pageable pageable);
+    Page<Vocabulary> findByUserIdAndSourceArticleId(String userId, String sourceArticleId, Pageable pageable);
+
+    Page<Vocabulary> findByUserId(String userId, Pageable pageable);
+
+    Optional<Vocabulary> findByIdAndUserId(String id, String userId);
 
     @Query("SELECT v.masteryLevel, COUNT(v) FROM Vocabulary v GROUP BY v.masteryLevel")
     List<Object[]> countByMasteryLevel();
+
+    @Query("SELECT v.masteryLevel, COUNT(v) FROM Vocabulary v WHERE v.userId = :userId GROUP BY v.masteryLevel")
+    List<Object[]> countByMasteryLevelForUser(@Param("userId") String userId);
 }
