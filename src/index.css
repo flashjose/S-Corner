@@ -96,12 +96,47 @@ html {
   width: max-content;
 }
 
+/* ─── 移动端 SVG 滤镜降级 ───────────────────────────────── */
+@media (max-width: 767px) {
+  /* 移动端禁用 NoiseOverlay 的 heavyNoise 滤镜以提升性能 */
+  .noise-overlay-mobile-reduce {
+    display: none;
+  }
+  /* 移动端简化 InkReveal 滤镜 */
+  .ink-reveal-mobile-simplify filter {
+    display: none;
+  }
+}
+
+/* ─── 移动端视口高度兼容 ────────────────────────────────── */
+.paper-viewer-root {
+  height: 100vh; /* fallback */
+  height: 100dvh;
+}
+
+/* ─── 移动端答案侧栏响应式 ──────────────────────────────── */
+@media (max-width: 767px) {
+  .answer-sidebar {
+    width: 100vw !important;
+    left: 0;
+    right: 0;
+  }
+  .answer-fab {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+  .answer-fab.sidebar-open {
+    right: calc(100vw - 72px) !important;
+  }
+}
+
 /* ─── 听力播放器 ───────────────────────────────────────── */
 .listening-player-bar {
   width: 100%;
   flex-shrink: 0;
   border-top: 1px solid var(--border);
   background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   z-index: 50;
 }

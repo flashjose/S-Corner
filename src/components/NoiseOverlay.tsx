@@ -9,7 +9,7 @@ const NoiseOverlay = () => {
   const theme = useAppStore((s) => s.theme);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[60] overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-[60] overflow-hidden noise-overlay-mobile-reduce">
       <svg
         className="h-full w-full"
         style={{

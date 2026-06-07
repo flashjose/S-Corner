@@ -112,8 +112,16 @@ const PaperViewer = () => {
     const mq = window.matchMedia('(max-width: 767px)');
     const update = () => setIsMobileLayout(mq.matches);
     update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
+    // 兼容旧浏览器：优先 addEventListener，回退 addListener
+    if (mq.addEventListener) {
+      mq.addEventListener('change', update);
+      return () => mq.removeEventListener('change', update);
+    } else {
+      // @ts-ignore — Safari < 14 / 旧 WebView
+      mq.addListener(update);
+      // @ts-ignore
+      return () => mq.removeListener(update);
+    }
   }, []);
 
   const applyFitWidthZoom = useCallback(() => {
@@ -304,7 +312,7 @@ const PaperViewer = () => {
   /* ── Loading / Not Found ── */
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--bg)' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--bg)', minHeight: '100dvh' }}>
         <div className="animate-pulse text-[10px] font-bold uppercase tracking-[0.4em]" style={{ color: 'var(--text-muted)' }}>
           Loading...
         </div>
@@ -333,7 +341,7 @@ const PaperViewer = () => {
 
   return (
     <div ref={viewerRef} className="paper-viewer-root h-screen flex flex-col font-['Manrope'] selection:bg-[var(--selection-bg)] overflow-hidden"
-         style={{ backgroundColor: 'var(--bg)', color: 'var(--text-primary)' }}>
+         style={{ backgroundColor: 'var(--bg)', color: 'var(--text-primary)', height: '100dvh' }}>
 
       {/* ─── Top Bar ─── */}
       <div className="flex-shrink-0 border-b px-3 md:px-4 py-2 flex items-center justify-between gap-2 md:gap-4"
@@ -460,8 +468,23 @@ const PaperViewer = () => {
       {/* ─── 悬浮「查答案」按钮 ─── */}
       <motion.button
         onClick={() => setShowAnswers(v => !v)}
-        className="fixed z-40 flex items-center gap-2 shadow-lg transition-colors"
-        style={{
+        className={`fixed z-40 flex items-center gap-2 shadow-lg transition-colors ${
+          isMobileLayout
+            ? 'answer-fab'
+            : ''
+        } ${showAnswers && isMobileLayout ? 'sidebar-open' : ''}`}
+        style={isMobileLayout ? {
+          right: 16,
+          bottom: 16 + listeningBarOffset,
+          backgroundColor: showAnswers ? 'var(--text-primary)' : 'var(--card-bg)',
+          color: showAnswers ? 'var(--bg)' : 'var(--text-primary)',
+          border: `1px solid ${showAnswers ? 'var(--text-primary)' : 'var(--border)'}`,
+          borderRadius: 8,
+          padding: '10px 18px',
+          fontSize: 11,
+          fontWeight: 700,
+          letterSpacing: '0.1em',
+        } : {
           right: showAnswers ? 340 : 20,
           bottom: 20 + listeningBarOffset,
           backgroundColor: showAnswers ? 'var(--text-primary)' : 'var(--card-bg)',
@@ -475,7 +498,7 @@ const PaperViewer = () => {
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
-        layout
+        layout={!isMobileLayout}
         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
       >
         <CheckCircle size={15} />
@@ -485,14 +508,33 @@ const PaperViewer = () => {
       {/* ─── 答案侧栏 ─── */}
       <AnimatePresence>
         {showAnswers && (
-          <motion.div
-            initial={{ x: 340 }}
-            animate={{ x: 0 }}
-            exit={{ x: 340 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed right-0 top-0 bottom-0 z-30 border-l flex flex-col"
-            style={{ width: 340, borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }}
-          >
+          <>
+            {/* 移动端遮罩 */}
+            {isMobileLayout && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-20"
+                style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+                onClick={() => setShowAnswers(false)}
+              />
+            )}
+            <motion.div
+              initial={isMobileLayout ? { y: '100%' } : { x: 340 }}
+              animate={isMobileLayout ? { y: 0 } : { x: 0 }}
+              exit={isMobileLayout ? { y: '100%' } : { x: 340 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className={`fixed z-30 border-l flex flex-col ${
+                isMobileLayout
+                  ? 'answer-sidebar left-0 right-0 bottom-0 rounded-t-xl border-t border-l-0'
+                  : 'right-0 top-0 bottom-0'
+              }`}
+              style={isMobileLayout
+                ? { maxHeight: '75vh', borderColor: 'var(--border)', backgroundColor: 'var(--surface)', borderWidth: '1px 0 0 0' }
+                : { width: 340, borderColor: 'var(--border)', backgroundColor: 'var(--surface)' }
+              }
+            >
             {/* 侧栏头部 */}
             <div className="flex-shrink-0 flex items-center justify-between px-4 py-3 border-b"
                  style={{ borderColor: 'var(--border)' }}>
@@ -614,6 +656,7 @@ const PaperViewer = () => {
               )}
             </div>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
 
@@ -688,7 +731,7 @@ const PaperViewer = () => {
       {hasListening && (
         <div
           className="fixed bottom-0 left-0 z-50 transition-[right] duration-300"
-          style={{ right: showAnswers ? 340 : 0 }}
+          style={{ right: (!isMobileLayout && showAnswers) ? 340 : 0 }}
         >
           <ListeningPlayerBar
             audioUrl={resolvedAudioUrl}

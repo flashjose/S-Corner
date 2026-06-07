@@ -25,8 +25,15 @@ function useRevealRadius() {
     const mq = window.matchMedia('(max-width: 767px)');
     const update = () => setRadius(mq.matches ? REVEAL_RADIUS_MOBILE : REVEAL_RADIUS_DESKTOP);
     update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
+    if (mq.addEventListener) {
+      mq.addEventListener('change', update);
+      return () => mq.removeEventListener('change', update);
+    } else {
+      // @ts-ignore — Safari < 14 / 旧 WebView
+      mq.addListener(update);
+      // @ts-ignore
+      return () => mq.removeListener(update);
+    }
   }, []);
 
   return radius;
