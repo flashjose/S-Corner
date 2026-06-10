@@ -2,7 +2,7 @@
   "name": "s-corner",
   "private": false,
   "version": "1.0.0",
-  "description": "Open-source English exam practice platform (CET-4/6, 考研, TEM)",
+  "description": "Open-source English exam practice platform (CET-4/6, 考研)",
   "license": "MIT",
   "type": "module",
   "scripts": {

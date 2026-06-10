@@ -1,6 +1,6 @@
 # S-Corner
 
-开源英语真题刷题学习平台，支持 CET4/CET6/考研/专四专八真题 PDF 在线阅读、划词查词、句子翻译、标注高亮与生词本。
+开源英语真题刷题学习平台，支持 CET4/CET6/考研真题 PDF 在线阅读、划词查词、句子翻译、标注高亮与生词本。
 
 ## 功能
 
@@ -88,7 +88,7 @@ npm run import-ecdict-sqlite -- data/stardict.db
 # 或指向解压目录：npm run import-ecdict-sqlite -- data
 ```
 
-**`.eudic` / `.mdx` 不能用于本项目的导入脚本**（欧路/MDict 专用二进制格式）。你已有的 `简明英汉增强版.eudic` 与上述 SQLite 是同一词库的不同封装，请用 SQLite 包导入 S-Corner。
+**`.eudic` / `.mdx` 不能用于本项目的导入脚本**（欧路/MDict 专用二进制格式）。
 
 可选方式：
 

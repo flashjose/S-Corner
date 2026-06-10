@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react';
 const CATEGORY_ICONS: Record<string, string> = {
   kaoyan: '',
   cet6: '',
-  tem: '',
   cet4: '',
 };
 

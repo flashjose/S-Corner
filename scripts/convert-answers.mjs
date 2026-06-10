@@ -14,20 +14,11 @@ const papers = scraped.results.map(r => {
   }
 
   return {
-    categorySlug: r.category === 'tem4' || r.category === 'tem8' ? 'tem' : r.category,
+    categorySlug: r.category,
     slug: r.slug,
     answers: answersObj,
   };
 });
-
-// Map tem4/tem8 slugs to match database
-// Database uses: tem4 -> 2024-06/01, tem8 -> 2024-06/02
-for (const paper of papers) {
-  if (paper.categorySlug === 'tem') {
-    // tem4 slug: "2024-06/01", tem8 slug: "2024-06/02"
-    // scraped tem4 slug is like "2024-06/01", tem8 is "2024-06/02" - already correct
-  }
-}
 
 const output = { papers };
 

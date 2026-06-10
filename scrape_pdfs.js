@@ -1,201 +1,209 @@
-const { chromium } = require('playwright');
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
-const http = require('http');
+import fs from 'node:fs';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { chromium } from 'playwright';
 
-// 配置
 const BASE_URL = 'https://zhenti.burningvocabulary.cn';
-const OUTPUT_DIR = 'd:\\Projects\\S-Corner\\public\\pdfs';
+const PDF_HOST = 'https://res-zhenti.burningvocabulary.cn';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const OUTPUT_DIR = path.join(__dirname, 'public', 'pdfs');
+const DEFAULT_STORAGE = path.join(__dirname, 'scripts', '.zhenti-storage.json');
+const STORAGE_STATE =
+  process.env.ZHENTI_STORAGE_STATE || process.env.ZTHENTI_STORAGE_STATE || DEFAULT_STORAGE;
+const KNOWN_UNAVAILABLE = new Set();
 
-// 要抓取的分类和时间范围
 const CATEGORIES = [
-  { 
-    name: 'cet4', 
-    type: 'monthly', // 有月份和套数
-    years: ['2023-06', '2023-12', '2024-06', '2024-12', '2025-06', '2025-12'] 
+  {
+    slug: 'cet4',
+    pagePath: '/cet4',
+    paperPattern: /^\/cet4\/\d{4}-\d{2}\/\d{2}$/,
+    toLocalPath: (pathname) => pathname.replace(/^\/cet4\//, 'cet4/') + '.pdf',
   },
-  { 
-    name: 'cet6', 
-    type: 'monthly',
-    years: ['2024-06', '2024-12', '2025-06', '2025-12'] 
+  {
+    slug: 'cet6',
+    pagePath: '/cet6',
+    paperPattern: /^\/cet6\/\d{4}-\d{2}\/\d{2}$/,
+    toLocalPath: (pathname) => pathname.replace(/^\/cet6\//, 'cet6/') + '.pdf',
   },
-  { 
-    name: 'tem4', 
-    type: 'yearly', // 只有年份
-    years: ['2023', '2024', '2025'] 
+  {
+    slug: 'kaoyan',
+    pagePath: '/kaoyan',
+    paperPattern: /^\/kaoyan\/\d{4}\/\d{2}$/,
+    toLocalPath: (pathname) => {
+      const [, , year, setId] = pathname.split('/');
+      return path.join('kaoyan', `${year}-01`, `${setId}.pdf`);
+    },
   },
-  { 
-    name: 'tem8', 
-    type: 'yearly',
-    years: ['2023', '2024', '2025'] 
-  }
 ];
 
-// 每个时间段最多3套题（仅对 monthly 类型有效）
-const MAX_SETS = 3;
-
-// 下载文件
-function downloadFile(url, destPath) {
-  return new Promise((resolve, reject) => {
-    const protocol = url.startsWith('https') ? https : http;
-    const file = fs.createWriteStream(destPath);
-    
-    protocol.get(url, (response) => {
-      // 处理重定向
-      if (response.statusCode === 301 || response.statusCode === 302) {
-        downloadFile(response.headers.location, destPath)
-          .then(resolve)
-          .catch(reject);
-        return;
-      }
-      
-      if (response.statusCode !== 200) {
-        reject(new Error(`Failed to download: ${response.statusCode}`));
-        return;
-      }
-      
-      response.pipe(file);
-      file.on('finish', () => {
-        file.close();
-        resolve();
-      });
-    }).on('error', (err) => {
-      fs.unlink(destPath, () => {});
-      reject(err);
-    });
-  });
+function normalizePathname(href) {
+  try {
+    return new URL(href, BASE_URL).pathname.replace(/\/$/, '');
+  } catch {
+    return '';
+  }
 }
 
-// 从页面获取 PDF URL
-async function getPdfUrl(page, url) {
-  try {
-    // 监听网络请求
-    let pdfUrl = null;
-    
-    const requestHandler = (request) => {
-      const reqUrl = request.url();
-      if (reqUrl.endsWith('.pdf')) {
-        pdfUrl = reqUrl;
-      }
-    };
-    
-    page.on('request', requestHandler);
-    
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
-    await page.waitForTimeout(2000);
-    
-    page.off('request', requestHandler);
-    
-    return pdfUrl;
-  } catch (error) {
-    console.error(`Error getting PDF URL from ${url}:`, error.message);
-    return null;
+function expectedPdfUrl(paperPath) {
+  return `${PDF_HOST}${paperPath}.pdf`;
+}
+
+async function discoverPaperPages(page, category) {
+  await page.goto(`${BASE_URL}${category.pagePath}`, {
+    waitUntil: 'networkidle',
+    timeout: 30_000,
+  });
+
+  const links = await page.$$eval('a[href]', (anchors) =>
+    anchors.map((anchor) => anchor.getAttribute('href')).filter(Boolean),
+  );
+
+  const paths = new Set();
+  for (const pathname of category.extraPaperPaths ?? []) {
+    paths.add(pathname);
   }
+
+  for (const link of links) {
+    const pathname = normalizePathname(link);
+    if (category.paperPattern.test(pathname)) {
+      paths.add(pathname);
+    }
+  }
+
+  return [...paths].sort((a, b) => b.localeCompare(a));
+}
+
+async function findPdfUrl(page, paperUrl) {
+  const seen = new Set();
+  let pdfUrl = null;
+
+  const rememberPdf = async (response) => {
+    const url = response.url();
+    if (seen.has(url)) return;
+    seen.add(url);
+
+    const contentType = response.headers()['content-type'] ?? '';
+    if (url.includes('.pdf') || contentType.includes('application/pdf')) {
+      pdfUrl = url;
+    }
+  };
+
+  page.on('response', rememberPdf);
+  try {
+    await page.goto(paperUrl, { waitUntil: 'networkidle', timeout: 30_000 });
+    await page.waitForTimeout(1_000);
+  } catch (error) {
+    console.warn(`    Could not inspect page: ${error.message}`);
+  } finally {
+    page.off('response', rememberPdf);
+  }
+
+  return pdfUrl;
+}
+
+async function downloadFile(url, destPath, referer) {
+  await fsp.mkdir(path.dirname(destPath), { recursive: true });
+  const tempPath = `${destPath}.download`;
+
+  const response = await fetch(url, {
+    redirect: 'follow',
+    headers: {
+      Referer: referer,
+      Origin: BASE_URL,
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} from ${url}`);
+  }
+
+  const buffer = Buffer.from(await response.arrayBuffer());
+  if (buffer.subarray(0, 4).toString('utf8') !== '%PDF') {
+    await fsp.rm(tempPath, { force: true });
+    throw new Error(`Downloaded file is not a PDF: ${url}`);
+  }
+
+  await fsp.writeFile(tempPath, buffer);
+  await fsp.rename(tempPath, destPath);
 }
 
 async function main() {
-  console.log('Starting PDF scraping...');
-  
   const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext();
+  const contextOptions = fs.existsSync(STORAGE_STATE) ? { storageState: STORAGE_STATE } : {};
+  const context = await browser.newContext(contextOptions);
   const page = await context.newPage();
-  
-  let totalDownloaded = 0;
-  let totalFailed = 0;
-  
-  for (const category of CATEGORIES) {
-    console.log(`\nProcessing category: ${category.name}`);
-    
-    // 创建分类目录
-    const categoryDir = path.join(OUTPUT_DIR, category.name);
-    if (!fs.existsSync(categoryDir)) {
-      fs.mkdirSync(categoryDir, { recursive: true });
+  const summary = {
+    discovered: 0,
+    skipped: 0,
+    unavailable: 0,
+    downloaded: 0,
+    failed: 0,
+  };
+
+  try {
+    if (contextOptions.storageState) {
+      console.log(`Using zhenti storage state: ${STORAGE_STATE}`);
     }
-    
-    for (const year of category.years) {
-      console.log(`  Processing year: ${year}`);
-      
-      if (category.type === 'yearly') {
-        // TEM4/TEM8 格式：/tem4/2025
-        const pdfFileName = `${year}.pdf`;
-        const pdfPath = path.join(categoryDir, pdfFileName);
-        
-        // 检查是否已下载
-        if (fs.existsSync(pdfPath)) {
-          console.log(`    Skipping ${category.name}/${pdfFileName} (already exists)`);
+
+    for (const category of CATEGORIES) {
+      console.log(`\n${category.slug}: discovering papers`);
+      const paperPaths = await discoverPaperPages(page, category);
+      summary.discovered += paperPaths.length;
+      console.log(`  Found ${paperPaths.length} paper pages`);
+
+      for (const paperPath of paperPaths) {
+        const localRelPath = category.toLocalPath(paperPath);
+        const localPath = path.join(OUTPUT_DIR, localRelPath);
+
+        if (KNOWN_UNAVAILABLE.has(paperPath)) {
+          summary.unavailable += 1;
+          console.log(`    Skip unavailable ${localRelPath}`);
           continue;
         }
-        
-        console.log(`    Fetching PDF URL...`);
-        const url = `${BASE_URL}/${category.name}/${year}`;
-        const pdfUrl = await getPdfUrl(page, url);
-        
-        if (pdfUrl) {
-          try {
-            console.log(`    Downloading: ${pdfUrl}`);
-            await downloadFile(pdfUrl, pdfPath);
-            console.log(`    Saved to: ${pdfPath}`);
-            totalDownloaded++;
-          } catch (error) {
-            console.error(`    Failed to download: ${error.message}`);
-            totalFailed++;
-          }
-        } else {
-          console.log(`    No PDF found`);
-          totalFailed++;
+
+        if (fs.existsSync(localPath)) {
+          summary.skipped += 1;
+          console.log(`    Skip existing ${localRelPath}`);
+          continue;
         }
-      } else {
-        // CET4/CET6 格式：/cet4/2023-06/01
-        // 创建年份目录
-        const yearDir = path.join(categoryDir, year);
-        if (!fs.existsSync(yearDir)) {
-          fs.mkdirSync(yearDir, { recursive: true });
+
+        const paperUrl = `${BASE_URL}${paperPath}`;
+        const fallbackPdfUrl = expectedPdfUrl(paperPath);
+        const inspectedPdfUrl = await findPdfUrl(page, paperUrl);
+        const pdfUrl = inspectedPdfUrl ?? fallbackPdfUrl;
+
+        try {
+          console.log(`    Download ${localRelPath}`);
+          await downloadFile(pdfUrl, localPath, paperUrl);
+          summary.downloaded += 1;
+        } catch (error) {
+          summary.failed += 1;
+          console.warn(`    Failed ${localRelPath}: ${error.message}`);
         }
-        
-        for (let setNum = 1; setNum <= MAX_SETS; setNum++) {
-          const pdfFileName = `${setNum.toString().padStart(2, '0')}.pdf`;
-          const pdfPath = path.join(yearDir, pdfFileName);
-          
-          // 检查是否已下载
-          if (fs.existsSync(pdfPath)) {
-            console.log(`    Skipping ${category.name}/${year}/${pdfFileName} (already exists)`);
-            continue;
-          }
-          
-          console.log(`    Fetching PDF URL for set ${setNum}...`);
-          const url = `${BASE_URL}/${category.name}/${year}/${setNum.toString().padStart(2, '0')}`;
-          const pdfUrl = await getPdfUrl(page, url);
-          
-          if (pdfUrl) {
-            try {
-              console.log(`    Downloading: ${pdfUrl}`);
-              await downloadFile(pdfUrl, pdfPath);
-              console.log(`    Saved to: ${pdfPath}`);
-              totalDownloaded++;
-            } catch (error) {
-              console.error(`    Failed to download: ${error.message}`);
-              totalFailed++;
-            }
-          } else {
-            console.log(`    No PDF found for set ${setNum}`);
-            totalFailed++;
-          }
-        }
+
+        await page.waitForTimeout(300);
       }
-      
-      // 添加延迟避免被封
-      await new Promise(resolve => setTimeout(resolve, 1000));
     }
+  } finally {
+    await browser.close();
   }
-  
-  await browser.close();
-  
-  console.log('\n========================================');
-  console.log(`Scraping completed!`);
-  console.log(`Total downloaded: ${totalDownloaded}`);
-  console.log(`Total failed: ${totalFailed}`);
-  console.log('========================================');
+
+  console.log('\nDone');
+  console.log(`  Discovered: ${summary.discovered}`);
+  console.log(`  Skipped:    ${summary.skipped}`);
+  console.log(`  Unavailable:${summary.unavailable}`);
+  console.log(`  Downloaded: ${summary.downloaded}`);
+  console.log(`  Failed:     ${summary.failed}`);
+
+  if (summary.failed > 0) {
+    process.exitCode = 1;
+  }
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

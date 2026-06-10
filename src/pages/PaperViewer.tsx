@@ -306,7 +306,7 @@ const PaperViewer = () => {
     () => resolveListeningAudioUrl(categorySlug, fullSlug, paper?.audioUrl),
     [categorySlug, fullSlug, paper?.audioUrl],
   );
-  const hasListening = !!resolvedAudioUrl && (categorySlug === 'cet4' || categorySlug === 'cet6' || categorySlug === 'tem');
+  const hasListening = !!resolvedAudioUrl && (categorySlug === 'cet4' || categorySlug === 'cet6');
   const listeningBarOffset = hasListening ? LISTENING_PLAYER_HEIGHT : 0;
 
   /* ── Loading / Not Found ── */

@@ -2,7 +2,7 @@
 
 ## Domain Language
 
-This is a language learning application for English exams (CET-4, CET-6, 考研, TEM).
+This is a language learning application for English exams (CET-4, CET-6, 考研).
 
 ## Key Concepts
 

@@ -36,8 +36,7 @@ public class DataSeeder implements CommandLineRunner {
         // ── 考试分类 ──
         ExamCategory kaoyan = createCategory("kaoyan", "历年考研英语", "考研英语历年真题试卷", 1);
         ExamCategory cet6 = createCategory("cet6", "大学英语六级", "CET6 历年真题试卷", 2);
-        ExamCategory tem = createCategory("tem", "专四专八英语", "专四专八历年真题试卷", 3);
-        ExamCategory cet4 = createCategory("cet4", "大学英语四级", "CET4 历年真题试卷", 4);
+        ExamCategory cet4 = createCategory("cet4", "大学英语四级", "CET4 历年真题试卷", 3);
 
         // ── CET4 试卷 ──
         createPapers(cet4.getId(), "cet4", "英语四级", new int[][]{
@@ -56,13 +55,7 @@ public class DataSeeder implements CommandLineRunner {
         // ── 考研英语 ──
         createPapers(kaoyan.getId(), "kaoyan", "考研英语", new int[][]{
             {2026, 1, 2}, {2025, 1, 2}, {2024, 1, 2}, {2023, 1, 2},
-            {2022, 1, 2}, {2021, 1, 2}, {2020, 1, 2}, {2019, 1, 2},
-        });
-
-        // ── 专四专八 ──
-        createPapers(tem.getId(), "tem", "专四专八", new int[][]{
-            {2025, 6, 2}, {2024, 6, 2}, {2023, 6, 2}, {2022, 6, 2},
-            {2021, 6, 2}, {2020, 6, 2},
+            {2022, 1, 2}, {2021, 1, 2}, {2020, 1, 2},
         });
 
         log.info("Seeding completed: {} categories, {} papers",

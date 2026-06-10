@@ -23,7 +23,7 @@ This repo is a language learning application for English exams. Treat the existi
 - Frontend: React + TypeScript + Vite
 - Backend: Spring Boot + Java
 - Storage: local files and in-memory or database-backed app state
-- Main domain terms: exam papers, sentences, vocabulary, annotations
+- Main domain terms: exam papers, sentences, vocabulary, annotations, CET4, CET6, kaoyan
 
 ### Work style
 

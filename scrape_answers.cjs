@@ -27,22 +27,6 @@ const EXAM_PAGES = [
       url: `${BASE_URL}/cet6/${y}/${s.toString().padStart(2, '0')}`
     }))
   ),
-  // TEM4 - 2024, 2025
-  ...['2024', '2025'].map(y => ({
-    category: 'tem4',
-    period: y,
-    set: 1,
-    slug: `${y}-06/01`,
-    url: `${BASE_URL}/tem4/${y}`
-  })),
-  // TEM8 - 2024, 2025
-  ...['2024', '2025'].map(y => ({
-    category: 'tem8',
-    period: y,
-    set: 1,
-    slug: `${y}-06/02`,
-    url: `${BASE_URL}/tem8/${y}`
-  })),
 ];
 
 async function scrapeAnswers(page, url) {

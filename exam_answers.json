@@ -1,0 +1,6540 @@
+{
+  "scrapedAt": "2026-06-07T05:23:32.514Z",
+  "total": 34,
+  "successCount": 34,
+  "failCount": 0,
+  "results": [
+    {
+      "category": "cet4",
+      "period": "2023-06",
+      "set": 1,
+      "slug": "2023-06/01",
+      "fullSlug": "cet4/2023-06/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "B"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "D"
+        },
+        {
+          "number": 4,
+          "answer": "C"
+        },
+        {
+          "number": 5,
+          "answer": "B"
+        },
+        {
+          "number": 6,
+          "answer": "C"
+        },
+        {
+          "number": 7,
+          "answer": "D"
+        },
+        {
+          "number": 8,
+          "answer": "B"
+        },
+        {
+          "number": 9,
+          "answer": "A"
+        },
+        {
+          "number": 10,
+          "answer": "B"
+        },
+        {
+          "number": 11,
+          "answer": "C"
+        },
+        {
+          "number": 12,
+          "answer": "A"
+        },
+        {
+          "number": 13,
+          "answer": "D"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "D"
+        },
+        {
+          "number": 18,
+          "answer": "A"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "D"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "C"
+        },
+        {
+          "number": 26,
+          "answer": "L"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "E"
+        },
+        {
+          "number": 29,
+          "answer": "N"
+        },
+        {
+          "number": 30,
+          "answer": "F"
+        },
+        {
+          "number": 31,
+          "answer": "O"
+        },
+        {
+          "number": 32,
+          "answer": "C"
+        },
+        {
+          "number": 33,
+          "answer": "I"
+        },
+        {
+          "number": 34,
+          "answer": "K"
+        },
+        {
+          "number": 35,
+          "answer": "M"
+        },
+        {
+          "number": 36,
+          "answer": "F"
+        },
+        {
+          "number": 37,
+          "answer": "K"
+        },
+        {
+          "number": 38,
+          "answer": "H"
+        },
+        {
+          "number": 39,
+          "answer": "D"
+        },
+        {
+          "number": 40,
+          "answer": "J"
+        },
+        {
+          "number": 41,
+          "answer": "M"
+        },
+        {
+          "number": 42,
+          "answer": "C"
+        },
+        {
+          "number": 43,
+          "answer": "G"
+        },
+        {
+          "number": 44,
+          "answer": "E"
+        },
+        {
+          "number": 45,
+          "answer": "J"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "D"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "B"
+        },
+        {
+          "number": 52,
+          "answer": "A"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "D"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2023-06",
+      "set": 2,
+      "slug": "2023-06/02",
+      "fullSlug": "cet4/2023-06/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "D"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "B"
+        },
+        {
+          "number": 4,
+          "answer": "A"
+        },
+        {
+          "number": 5,
+          "answer": "C"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "C"
+        },
+        {
+          "number": 8,
+          "answer": "A"
+        },
+        {
+          "number": 9,
+          "answer": "B"
+        },
+        {
+          "number": 10,
+          "answer": "D"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "A"
+        },
+        {
+          "number": 13,
+          "answer": "C"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "B"
+        },
+        {
+          "number": 16,
+          "answer": "D"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "D"
+        },
+        {
+          "number": 21,
+          "answer": "D"
+        },
+        {
+          "number": 22,
+          "answer": "B"
+        },
+        {
+          "number": 23,
+          "answer": "C"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "A"
+        },
+        {
+          "number": 26,
+          "answer": "G"
+        },
+        {
+          "number": 27,
+          "answer": "N"
+        },
+        {
+          "number": 28,
+          "answer": "D"
+        },
+        {
+          "number": 29,
+          "answer": "F"
+        },
+        {
+          "number": 30,
+          "answer": "H"
+        },
+        {
+          "number": 31,
+          "answer": "K"
+        },
+        {
+          "number": 32,
+          "answer": "E"
+        },
+        {
+          "number": 33,
+          "answer": "C"
+        },
+        {
+          "number": 34,
+          "answer": "I"
+        },
+        {
+          "number": 35,
+          "answer": "M"
+        },
+        {
+          "number": 36,
+          "answer": "F"
+        },
+        {
+          "number": 37,
+          "answer": "C"
+        },
+        {
+          "number": 38,
+          "answer": "J"
+        },
+        {
+          "number": 39,
+          "answer": "E"
+        },
+        {
+          "number": 40,
+          "answer": "B"
+        },
+        {
+          "number": 41,
+          "answer": "L"
+        },
+        {
+          "number": 42,
+          "answer": "G"
+        },
+        {
+          "number": 43,
+          "answer": "D"
+        },
+        {
+          "number": 44,
+          "answer": "I"
+        },
+        {
+          "number": 45,
+          "answer": "L"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "B"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "A"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "D"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2023-06",
+      "set": 3,
+      "slug": "2023-06/03",
+      "fullSlug": "cet4/2023-06/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "H"
+        },
+        {
+          "number": 27,
+          "answer": "O"
+        },
+        {
+          "number": 28,
+          "answer": "I"
+        },
+        {
+          "number": 29,
+          "answer": "N"
+        },
+        {
+          "number": 30,
+          "answer": "C"
+        },
+        {
+          "number": 31,
+          "answer": "L"
+        },
+        {
+          "number": 32,
+          "answer": "D"
+        },
+        {
+          "number": 33,
+          "answer": "M"
+        },
+        {
+          "number": 34,
+          "answer": "A"
+        },
+        {
+          "number": 35,
+          "answer": "G"
+        },
+        {
+          "number": 36,
+          "answer": "G"
+        },
+        {
+          "number": 37,
+          "answer": "L"
+        },
+        {
+          "number": 38,
+          "answer": "D"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "M"
+        },
+        {
+          "number": 41,
+          "answer": "J"
+        },
+        {
+          "number": 42,
+          "answer": "F"
+        },
+        {
+          "number": 43,
+          "answer": "C"
+        },
+        {
+          "number": 44,
+          "answer": "H"
+        },
+        {
+          "number": 45,
+          "answer": "K"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "A"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "D"
+        },
+        {
+          "number": 54,
+          "answer": "A"
+        },
+        {
+          "number": 55,
+          "answer": "C"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet4",
+      "period": "2023-12",
+      "set": 1,
+      "slug": "2023-12/01",
+      "fullSlug": "cet4/2023-12/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "C"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "B"
+        },
+        {
+          "number": 4,
+          "answer": "C"
+        },
+        {
+          "number": 5,
+          "answer": "D"
+        },
+        {
+          "number": 6,
+          "answer": "B"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "D"
+        },
+        {
+          "number": 9,
+          "answer": "C"
+        },
+        {
+          "number": 10,
+          "answer": "A"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "D"
+        },
+        {
+          "number": 15,
+          "answer": "B"
+        },
+        {
+          "number": 16,
+          "answer": "D"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "C"
+        },
+        {
+          "number": 19,
+          "answer": "B"
+        },
+        {
+          "number": 20,
+          "answer": "C"
+        },
+        {
+          "number": 21,
+          "answer": "A"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "A"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "D"
+        },
+        {
+          "number": 26,
+          "answer": "F"
+        },
+        {
+          "number": 27,
+          "answer": "D"
+        },
+        {
+          "number": 28,
+          "answer": "H"
+        },
+        {
+          "number": 29,
+          "answer": "I"
+        },
+        {
+          "number": 30,
+          "answer": "O"
+        },
+        {
+          "number": 31,
+          "answer": "M"
+        },
+        {
+          "number": 32,
+          "answer": "L"
+        },
+        {
+          "number": 33,
+          "answer": "J"
+        },
+        {
+          "number": 34,
+          "answer": "A"
+        },
+        {
+          "number": 35,
+          "answer": "G"
+        },
+        {
+          "number": 36,
+          "answer": "D"
+        },
+        {
+          "number": 37,
+          "answer": "I"
+        },
+        {
+          "number": 38,
+          "answer": "B"
+        },
+        {
+          "number": 39,
+          "answer": "G"
+        },
+        {
+          "number": 40,
+          "answer": "A"
+        },
+        {
+          "number": 41,
+          "answer": "F"
+        },
+        {
+          "number": 42,
+          "answer": "L"
+        },
+        {
+          "number": 43,
+          "answer": "J"
+        },
+        {
+          "number": 44,
+          "answer": "H"
+        },
+        {
+          "number": 45,
+          "answer": "K"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "B"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "C"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2023-12",
+      "set": 2,
+      "slug": "2023-12/02",
+      "fullSlug": "cet4/2023-12/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "C"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "D"
+        },
+        {
+          "number": 4,
+          "answer": "B"
+        },
+        {
+          "number": 5,
+          "answer": "B"
+        },
+        {
+          "number": 6,
+          "answer": "C"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "D"
+        },
+        {
+          "number": 9,
+          "answer": "D"
+        },
+        {
+          "number": 10,
+          "answer": "A"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "B"
+        },
+        {
+          "number": 13,
+          "answer": "C"
+        },
+        {
+          "number": 14,
+          "answer": "A"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "C"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "D"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "A"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "D"
+        },
+        {
+          "number": 26,
+          "answer": "O"
+        },
+        {
+          "number": 27,
+          "answer": "N"
+        },
+        {
+          "number": 28,
+          "answer": "I"
+        },
+        {
+          "number": 29,
+          "answer": "B"
+        },
+        {
+          "number": 30,
+          "answer": "C"
+        },
+        {
+          "number": 31,
+          "answer": "D"
+        },
+        {
+          "number": 32,
+          "answer": "F"
+        },
+        {
+          "number": 33,
+          "answer": "H"
+        },
+        {
+          "number": 34,
+          "answer": "A"
+        },
+        {
+          "number": 35,
+          "answer": "L"
+        },
+        {
+          "number": 36,
+          "answer": "D"
+        },
+        {
+          "number": 37,
+          "answer": "J"
+        },
+        {
+          "number": 38,
+          "answer": "P"
+        },
+        {
+          "number": 39,
+          "answer": "B"
+        },
+        {
+          "number": 40,
+          "answer": "F"
+        },
+        {
+          "number": 41,
+          "answer": "I"
+        },
+        {
+          "number": 42,
+          "answer": "C"
+        },
+        {
+          "number": 43,
+          "answer": "L"
+        },
+        {
+          "number": 44,
+          "answer": "E"
+        },
+        {
+          "number": 45,
+          "answer": "H"
+        },
+        {
+          "number": 46,
+          "answer": "D"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "C"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2023-12",
+      "set": 3,
+      "slug": "2023-12/03",
+      "fullSlug": "cet4/2023-12/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "D"
+        },
+        {
+          "number": 27,
+          "answer": "F"
+        },
+        {
+          "number": 28,
+          "answer": "E"
+        },
+        {
+          "number": 29,
+          "answer": "K"
+        },
+        {
+          "number": 30,
+          "answer": "N"
+        },
+        {
+          "number": 31,
+          "answer": "M"
+        },
+        {
+          "number": 32,
+          "answer": "H"
+        },
+        {
+          "number": 33,
+          "answer": "O"
+        },
+        {
+          "number": 34,
+          "answer": "L"
+        },
+        {
+          "number": 35,
+          "answer": "C"
+        },
+        {
+          "number": 36,
+          "answer": "C"
+        },
+        {
+          "number": 37,
+          "answer": "L"
+        },
+        {
+          "number": 38,
+          "answer": "H"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "M"
+        },
+        {
+          "number": 41,
+          "answer": "E"
+        },
+        {
+          "number": 42,
+          "answer": "I"
+        },
+        {
+          "number": 43,
+          "answer": "B"
+        },
+        {
+          "number": 44,
+          "answer": "J"
+        },
+        {
+          "number": 45,
+          "answer": "G"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "B"
+        },
+        {
+          "number": 53,
+          "answer": "C"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet4",
+      "period": "2024-06",
+      "set": 1,
+      "slug": "2024-06/01",
+      "fullSlug": "cet4/2024-06/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "B"
+        },
+        {
+          "number": 2,
+          "answer": "D"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "B"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "D"
+        },
+        {
+          "number": 9,
+          "answer": "C"
+        },
+        {
+          "number": 10,
+          "answer": "D"
+        },
+        {
+          "number": 11,
+          "answer": "A"
+        },
+        {
+          "number": 12,
+          "answer": "B"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "C"
+        },
+        {
+          "number": 17,
+          "answer": "D"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "D"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "A"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "B"
+        },
+        {
+          "number": 24,
+          "answer": "C"
+        },
+        {
+          "number": 25,
+          "answer": "D"
+        },
+        {
+          "number": 26,
+          "answer": "O"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "C"
+        },
+        {
+          "number": 29,
+          "answer": "A"
+        },
+        {
+          "number": 30,
+          "answer": "D"
+        },
+        {
+          "number": 31,
+          "answer": "M"
+        },
+        {
+          "number": 32,
+          "answer": "N"
+        },
+        {
+          "number": 33,
+          "answer": "I"
+        },
+        {
+          "number": 34,
+          "answer": "F"
+        },
+        {
+          "number": 35,
+          "answer": "E"
+        },
+        {
+          "number": 36,
+          "answer": "I"
+        },
+        {
+          "number": 37,
+          "answer": "C"
+        },
+        {
+          "number": 38,
+          "answer": "M"
+        },
+        {
+          "number": 39,
+          "answer": "F"
+        },
+        {
+          "number": 40,
+          "answer": "A"
+        },
+        {
+          "number": 41,
+          "answer": "K"
+        },
+        {
+          "number": 42,
+          "answer": "E"
+        },
+        {
+          "number": 43,
+          "answer": "L"
+        },
+        {
+          "number": 44,
+          "answer": "B"
+        },
+        {
+          "number": 45,
+          "answer": "G"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "B"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "B"
+        },
+        {
+          "number": 53,
+          "answer": "A"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "C"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2024-06",
+      "set": 2,
+      "slug": "2024-06/02",
+      "fullSlug": "cet4/2024-06/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "B"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "D"
+        },
+        {
+          "number": 5,
+          "answer": "D"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "D"
+        },
+        {
+          "number": 8,
+          "answer": "B"
+        },
+        {
+          "number": 9,
+          "answer": "D"
+        },
+        {
+          "number": 10,
+          "answer": "A"
+        },
+        {
+          "number": 11,
+          "answer": "C"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "D"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "C"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "A"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "C"
+        },
+        {
+          "number": 26,
+          "answer": "D"
+        },
+        {
+          "number": 27,
+          "answer": "M"
+        },
+        {
+          "number": 28,
+          "answer": "L"
+        },
+        {
+          "number": 29,
+          "answer": "F"
+        },
+        {
+          "number": 30,
+          "answer": "G"
+        },
+        {
+          "number": 31,
+          "answer": "I"
+        },
+        {
+          "number": 32,
+          "answer": "O"
+        },
+        {
+          "number": 33,
+          "answer": "B"
+        },
+        {
+          "number": 34,
+          "answer": "E"
+        },
+        {
+          "number": 35,
+          "answer": "J"
+        },
+        {
+          "number": 36,
+          "answer": "E"
+        },
+        {
+          "number": 37,
+          "answer": "H"
+        },
+        {
+          "number": 38,
+          "answer": "B"
+        },
+        {
+          "number": 39,
+          "answer": "F"
+        },
+        {
+          "number": 40,
+          "answer": "D"
+        },
+        {
+          "number": 41,
+          "answer": "A"
+        },
+        {
+          "number": 42,
+          "answer": "I"
+        },
+        {
+          "number": 43,
+          "answer": "C"
+        },
+        {
+          "number": 44,
+          "answer": "J"
+        },
+        {
+          "number": 45,
+          "answer": "G"
+        },
+        {
+          "number": 46,
+          "answer": "C"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "B"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "D"
+        },
+        {
+          "number": 54,
+          "answer": "A"
+        },
+        {
+          "number": 55,
+          "answer": "C"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2024-06",
+      "set": 3,
+      "slug": "2024-06/03",
+      "fullSlug": "cet4/2024-06/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "D"
+        },
+        {
+          "number": 27,
+          "answer": "M"
+        },
+        {
+          "number": 28,
+          "answer": "G"
+        },
+        {
+          "number": 29,
+          "answer": "N"
+        },
+        {
+          "number": 30,
+          "answer": "O"
+        },
+        {
+          "number": 31,
+          "answer": "A"
+        },
+        {
+          "number": 32,
+          "answer": "K"
+        },
+        {
+          "number": 33,
+          "answer": "I"
+        },
+        {
+          "number": 34,
+          "answer": "L"
+        },
+        {
+          "number": 35,
+          "answer": "E"
+        },
+        {
+          "number": 36,
+          "answer": "G"
+        },
+        {
+          "number": 37,
+          "answer": "C"
+        },
+        {
+          "number": 38,
+          "answer": "I"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "E"
+        },
+        {
+          "number": 41,
+          "answer": "B"
+        },
+        {
+          "number": 42,
+          "answer": "J"
+        },
+        {
+          "number": 43,
+          "answer": "F"
+        },
+        {
+          "number": 44,
+          "answer": "D"
+        },
+        {
+          "number": 45,
+          "answer": "H"
+        },
+        {
+          "number": 46,
+          "answer": "C"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "B"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "A"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet4",
+      "period": "2024-12",
+      "set": 1,
+      "slug": "2024-12/01",
+      "fullSlug": "cet4/2024-12/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "D"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "B"
+        },
+        {
+          "number": 5,
+          "answer": "D"
+        },
+        {
+          "number": 6,
+          "answer": "A"
+        },
+        {
+          "number": 7,
+          "answer": "B"
+        },
+        {
+          "number": 8,
+          "answer": "B"
+        },
+        {
+          "number": 9,
+          "answer": "C"
+        },
+        {
+          "number": 10,
+          "answer": "D"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "D"
+        },
+        {
+          "number": 13,
+          "answer": "A"
+        },
+        {
+          "number": 14,
+          "answer": "A"
+        },
+        {
+          "number": 15,
+          "answer": "C"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "C"
+        },
+        {
+          "number": 18,
+          "answer": "A"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "D"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "A"
+        },
+        {
+          "number": 25,
+          "answer": "B"
+        },
+        {
+          "number": 26,
+          "answer": "L"
+        },
+        {
+          "number": 27,
+          "answer": "D"
+        },
+        {
+          "number": 28,
+          "answer": "K"
+        },
+        {
+          "number": 29,
+          "answer": "M"
+        },
+        {
+          "number": 30,
+          "answer": "B"
+        },
+        {
+          "number": 31,
+          "answer": "A"
+        },
+        {
+          "number": 32,
+          "answer": "I"
+        },
+        {
+          "number": 33,
+          "answer": "N"
+        },
+        {
+          "number": 34,
+          "answer": "C"
+        },
+        {
+          "number": 35,
+          "answer": "O"
+        },
+        {
+          "number": 36,
+          "answer": "B"
+        },
+        {
+          "number": 37,
+          "answer": "J"
+        },
+        {
+          "number": 38,
+          "answer": "E"
+        },
+        {
+          "number": 39,
+          "answer": "L"
+        },
+        {
+          "number": 40,
+          "answer": "G"
+        },
+        {
+          "number": 41,
+          "answer": "D"
+        },
+        {
+          "number": 42,
+          "answer": "K"
+        },
+        {
+          "number": 43,
+          "answer": "A"
+        },
+        {
+          "number": 44,
+          "answer": "H"
+        },
+        {
+          "number": 45,
+          "answer": "C"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "B"
+        },
+        {
+          "number": 49,
+          "answer": "D"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "A"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2024-12",
+      "set": 2,
+      "slug": "2024-12/02",
+      "fullSlug": "cet4/2024-12/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "C"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "D"
+        },
+        {
+          "number": 5,
+          "answer": "B"
+        },
+        {
+          "number": 6,
+          "answer": "B"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "B"
+        },
+        {
+          "number": 9,
+          "answer": "D"
+        },
+        {
+          "number": 10,
+          "answer": "A"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "D"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "D"
+        },
+        {
+          "number": 18,
+          "answer": "C"
+        },
+        {
+          "number": 19,
+          "answer": "B"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "D"
+        },
+        {
+          "number": 22,
+          "answer": "A"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "C"
+        },
+        {
+          "number": 26,
+          "answer": "N"
+        },
+        {
+          "number": 27,
+          "answer": "I"
+        },
+        {
+          "number": 28,
+          "answer": "F"
+        },
+        {
+          "number": 29,
+          "answer": "E"
+        },
+        {
+          "number": 30,
+          "answer": "H"
+        },
+        {
+          "number": 31,
+          "answer": "A"
+        },
+        {
+          "number": 32,
+          "answer": "L"
+        },
+        {
+          "number": 33,
+          "answer": "B"
+        },
+        {
+          "number": 34,
+          "answer": "J"
+        },
+        {
+          "number": 35,
+          "answer": "C"
+        },
+        {
+          "number": 36,
+          "answer": "E"
+        },
+        {
+          "number": 37,
+          "answer": "H"
+        },
+        {
+          "number": 38,
+          "answer": "B"
+        },
+        {
+          "number": 39,
+          "answer": "L"
+        },
+        {
+          "number": 40,
+          "answer": "G"
+        },
+        {
+          "number": 41,
+          "answer": "C"
+        },
+        {
+          "number": 42,
+          "answer": "K"
+        },
+        {
+          "number": 43,
+          "answer": "A"
+        },
+        {
+          "number": 44,
+          "answer": "I"
+        },
+        {
+          "number": 45,
+          "answer": "F"
+        },
+        {
+          "number": 46,
+          "answer": "C"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "B"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "B"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2024-12",
+      "set": 3,
+      "slug": "2024-12/03",
+      "fullSlug": "cet4/2024-12/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "J"
+        },
+        {
+          "number": 27,
+          "answer": "K"
+        },
+        {
+          "number": 28,
+          "answer": "C"
+        },
+        {
+          "number": 29,
+          "answer": "F"
+        },
+        {
+          "number": 30,
+          "answer": "A"
+        },
+        {
+          "number": 31,
+          "answer": "L"
+        },
+        {
+          "number": 32,
+          "answer": "G"
+        },
+        {
+          "number": 33,
+          "answer": "D"
+        },
+        {
+          "number": 34,
+          "answer": "B"
+        },
+        {
+          "number": 35,
+          "answer": "I"
+        },
+        {
+          "number": 36,
+          "answer": "C"
+        },
+        {
+          "number": 37,
+          "answer": "J"
+        },
+        {
+          "number": 38,
+          "answer": "F"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "E"
+        },
+        {
+          "number": 41,
+          "answer": "K"
+        },
+        {
+          "number": 42,
+          "answer": "G"
+        },
+        {
+          "number": 43,
+          "answer": "B"
+        },
+        {
+          "number": 44,
+          "answer": "I"
+        },
+        {
+          "number": 45,
+          "answer": "D"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "C"
+        },
+        {
+          "number": 49,
+          "answer": "D"
+        },
+        {
+          "number": 50,
+          "answer": "B"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet4",
+      "period": "2025-06",
+      "set": 1,
+      "slug": "2025-06/01",
+      "fullSlug": "cet4/2025-06/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "B"
+        },
+        {
+          "number": 3,
+          "answer": "A"
+        },
+        {
+          "number": 4,
+          "answer": "D"
+        },
+        {
+          "number": 5,
+          "answer": "C"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "B"
+        },
+        {
+          "number": 8,
+          "answer": "A"
+        },
+        {
+          "number": 9,
+          "answer": "C"
+        },
+        {
+          "number": 10,
+          "answer": "C"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "D"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "D"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "D"
+        },
+        {
+          "number": 22,
+          "answer": "B"
+        },
+        {
+          "number": 23,
+          "answer": "C"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "A"
+        },
+        {
+          "number": 26,
+          "answer": "D"
+        },
+        {
+          "number": 27,
+          "answer": "G"
+        },
+        {
+          "number": 28,
+          "answer": "A"
+        },
+        {
+          "number": 29,
+          "answer": "E"
+        },
+        {
+          "number": 30,
+          "answer": "C"
+        },
+        {
+          "number": 31,
+          "answer": "O"
+        },
+        {
+          "number": 32,
+          "answer": "N"
+        },
+        {
+          "number": 33,
+          "answer": "B"
+        },
+        {
+          "number": 34,
+          "answer": "L"
+        },
+        {
+          "number": 35,
+          "answer": "M"
+        },
+        {
+          "number": 36,
+          "answer": "H"
+        },
+        {
+          "number": 37,
+          "answer": "C"
+        },
+        {
+          "number": 38,
+          "answer": "L"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "M"
+        },
+        {
+          "number": 41,
+          "answer": "G"
+        },
+        {
+          "number": 42,
+          "answer": "K"
+        },
+        {
+          "number": 43,
+          "answer": "D"
+        },
+        {
+          "number": 44,
+          "answer": "J"
+        },
+        {
+          "number": 45,
+          "answer": "B"
+        },
+        {
+          "number": 46,
+          "answer": "D"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "C"
+        },
+        {
+          "number": 49,
+          "answer": "B"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2025-06",
+      "set": 2,
+      "slug": "2025-06/02",
+      "fullSlug": "cet4/2025-06/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "B"
+        },
+        {
+          "number": 2,
+          "answer": "D"
+        },
+        {
+          "number": 3,
+          "answer": "D"
+        },
+        {
+          "number": 4,
+          "answer": "A"
+        },
+        {
+          "number": 5,
+          "answer": "C"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "C"
+        },
+        {
+          "number": 9,
+          "answer": "B"
+        },
+        {
+          "number": 10,
+          "answer": "C"
+        },
+        {
+          "number": 11,
+          "answer": "A"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "B"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "D"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "D"
+        },
+        {
+          "number": 21,
+          "answer": "A"
+        },
+        {
+          "number": 22,
+          "answer": "B"
+        },
+        {
+          "number": 23,
+          "answer": "C"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "A"
+        },
+        {
+          "number": 26,
+          "answer": "J"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "C"
+        },
+        {
+          "number": 29,
+          "answer": "I"
+        },
+        {
+          "number": 30,
+          "answer": "L"
+        },
+        {
+          "number": 31,
+          "answer": "H"
+        },
+        {
+          "number": 32,
+          "answer": "A"
+        },
+        {
+          "number": 33,
+          "answer": "E"
+        },
+        {
+          "number": 34,
+          "answer": "K"
+        },
+        {
+          "number": 35,
+          "answer": "O"
+        },
+        {
+          "number": 36,
+          "answer": "C"
+        },
+        {
+          "number": 37,
+          "answer": "I"
+        },
+        {
+          "number": 38,
+          "answer": "E"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "H"
+        },
+        {
+          "number": 41,
+          "answer": "D"
+        },
+        {
+          "number": 42,
+          "answer": "F"
+        },
+        {
+          "number": 43,
+          "answer": "J"
+        },
+        {
+          "number": 44,
+          "answer": "B"
+        },
+        {
+          "number": 45,
+          "answer": "G"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "D"
+        },
+        {
+          "number": 48,
+          "answer": "B"
+        },
+        {
+          "number": 49,
+          "answer": "D"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "C"
+        },
+        {
+          "number": 54,
+          "answer": "B"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2025-06",
+      "set": 3,
+      "slug": "2025-06/03",
+      "fullSlug": "cet4/2025-06/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "G"
+        },
+        {
+          "number": 27,
+          "answer": "F"
+        },
+        {
+          "number": 28,
+          "answer": "H"
+        },
+        {
+          "number": 29,
+          "answer": "C"
+        },
+        {
+          "number": 30,
+          "answer": "E"
+        },
+        {
+          "number": 31,
+          "answer": "A"
+        },
+        {
+          "number": 32,
+          "answer": "I"
+        },
+        {
+          "number": 33,
+          "answer": "K"
+        },
+        {
+          "number": 34,
+          "answer": "O"
+        },
+        {
+          "number": 35,
+          "answer": "J"
+        },
+        {
+          "number": 36,
+          "answer": "C"
+        },
+        {
+          "number": 37,
+          "answer": "H"
+        },
+        {
+          "number": 38,
+          "answer": "E"
+        },
+        {
+          "number": 39,
+          "answer": "N"
+        },
+        {
+          "number": 40,
+          "answer": "F"
+        },
+        {
+          "number": 41,
+          "answer": "B"
+        },
+        {
+          "number": 42,
+          "answer": "M"
+        },
+        {
+          "number": 43,
+          "answer": "G"
+        },
+        {
+          "number": 44,
+          "answer": "D"
+        },
+        {
+          "number": 45,
+          "answer": "L"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "C"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "C"
+        },
+        {
+          "number": 52,
+          "answer": "A"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet4",
+      "period": "2025-12",
+      "set": 1,
+      "slug": "2025-12/01",
+      "fullSlug": "cet4/2025-12/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "C"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "B"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "D"
+        },
+        {
+          "number": 8,
+          "answer": "C"
+        },
+        {
+          "number": 9,
+          "answer": "A"
+        },
+        {
+          "number": 10,
+          "answer": "B"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "A"
+        },
+        {
+          "number": 13,
+          "answer": "D"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "C"
+        },
+        {
+          "number": 18,
+          "answer": "A"
+        },
+        {
+          "number": 19,
+          "answer": "B"
+        },
+        {
+          "number": 20,
+          "answer": "C"
+        },
+        {
+          "number": 21,
+          "answer": "A"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "A"
+        },
+        {
+          "number": 26,
+          "answer": "C"
+        },
+        {
+          "number": 27,
+          "answer": "N"
+        },
+        {
+          "number": 28,
+          "answer": "D"
+        },
+        {
+          "number": 29,
+          "answer": "H"
+        },
+        {
+          "number": 30,
+          "answer": "J"
+        },
+        {
+          "number": 31,
+          "answer": "E"
+        },
+        {
+          "number": 32,
+          "answer": "I"
+        },
+        {
+          "number": 33,
+          "answer": "O"
+        },
+        {
+          "number": 34,
+          "answer": "G"
+        },
+        {
+          "number": 35,
+          "answer": "K"
+        },
+        {
+          "number": 36,
+          "answer": "E"
+        },
+        {
+          "number": 37,
+          "answer": "K"
+        },
+        {
+          "number": 38,
+          "answer": "C"
+        },
+        {
+          "number": 39,
+          "answer": "O"
+        },
+        {
+          "number": 40,
+          "answer": "G"
+        },
+        {
+          "number": 41,
+          "answer": "D"
+        },
+        {
+          "number": 42,
+          "answer": "L"
+        },
+        {
+          "number": 43,
+          "answer": "J"
+        },
+        {
+          "number": 44,
+          "answer": "A"
+        },
+        {
+          "number": 45,
+          "answer": "H"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "C"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "B"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "D"
+        },
+        {
+          "number": 54,
+          "answer": "B"
+        },
+        {
+          "number": 55,
+          "answer": "D"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2025-12",
+      "set": 2,
+      "slug": "2025-12/02",
+      "fullSlug": "cet4/2025-12/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "C"
+        },
+        {
+          "number": 3,
+          "answer": "B"
+        },
+        {
+          "number": 4,
+          "answer": "C"
+        },
+        {
+          "number": 5,
+          "answer": "B"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "B"
+        },
+        {
+          "number": 9,
+          "answer": "A"
+        },
+        {
+          "number": 10,
+          "answer": "D"
+        },
+        {
+          "number": 11,
+          "answer": "A"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "A"
+        },
+        {
+          "number": 17,
+          "answer": "C"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "D"
+        },
+        {
+          "number": 20,
+          "answer": "C"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "A"
+        },
+        {
+          "number": 26,
+          "answer": "D"
+        },
+        {
+          "number": 27,
+          "answer": "E"
+        },
+        {
+          "number": 28,
+          "answer": "L"
+        },
+        {
+          "number": 29,
+          "answer": "N"
+        },
+        {
+          "number": 30,
+          "answer": "A"
+        },
+        {
+          "number": 31,
+          "answer": "H"
+        },
+        {
+          "number": 32,
+          "answer": "C"
+        },
+        {
+          "number": 33,
+          "answer": "M"
+        },
+        {
+          "number": 34,
+          "answer": "F"
+        },
+        {
+          "number": 35,
+          "answer": "K"
+        },
+        {
+          "number": 36,
+          "answer": "D"
+        },
+        {
+          "number": 37,
+          "answer": "I"
+        },
+        {
+          "number": 38,
+          "answer": "F"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "K"
+        },
+        {
+          "number": 41,
+          "answer": "G"
+        },
+        {
+          "number": 42,
+          "answer": "B"
+        },
+        {
+          "number": 43,
+          "answer": "J"
+        },
+        {
+          "number": 44,
+          "answer": "E"
+        },
+        {
+          "number": 45,
+          "answer": "H"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "D"
+        },
+        {
+          "number": 48,
+          "answer": "B"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "B"
+        },
+        {
+          "number": 53,
+          "answer": "A"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "D"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet4",
+      "period": "2025-12",
+      "set": 3,
+      "slug": "2025-12/03",
+      "fullSlug": "cet4/2025-12/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "M"
+        },
+        {
+          "number": 27,
+          "answer": "G"
+        },
+        {
+          "number": 28,
+          "answer": "H"
+        },
+        {
+          "number": 29,
+          "answer": "E"
+        },
+        {
+          "number": 30,
+          "answer": "N"
+        },
+        {
+          "number": 31,
+          "answer": "O"
+        },
+        {
+          "number": 32,
+          "answer": "A"
+        },
+        {
+          "number": 33,
+          "answer": "I"
+        },
+        {
+          "number": 34,
+          "answer": "D"
+        },
+        {
+          "number": 35,
+          "answer": "K"
+        },
+        {
+          "number": 36,
+          "answer": "D"
+        },
+        {
+          "number": 37,
+          "answer": "A"
+        },
+        {
+          "number": 38,
+          "answer": "J"
+        },
+        {
+          "number": 39,
+          "answer": "F"
+        },
+        {
+          "number": 40,
+          "answer": "C"
+        },
+        {
+          "number": 41,
+          "answer": "I"
+        },
+        {
+          "number": 42,
+          "answer": "G"
+        },
+        {
+          "number": 43,
+          "answer": "B"
+        },
+        {
+          "number": 44,
+          "answer": "L"
+        },
+        {
+          "number": 45,
+          "answer": "H"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "C"
+        },
+        {
+          "number": 54,
+          "answer": "B"
+        },
+        {
+          "number": 55,
+          "answer": "D"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet6",
+      "period": "2024-06",
+      "set": 1,
+      "slug": "2024-06/01",
+      "fullSlug": "cet6/2024-06/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "B"
+        },
+        {
+          "number": 3,
+          "answer": "D"
+        },
+        {
+          "number": 4,
+          "answer": "A"
+        },
+        {
+          "number": 5,
+          "answer": "D"
+        },
+        {
+          "number": 6,
+          "answer": "C"
+        },
+        {
+          "number": 7,
+          "answer": "D"
+        },
+        {
+          "number": 8,
+          "answer": "A"
+        },
+        {
+          "number": 9,
+          "answer": "A"
+        },
+        {
+          "number": 10,
+          "answer": "D"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "B"
+        },
+        {
+          "number": 13,
+          "answer": "C"
+        },
+        {
+          "number": 14,
+          "answer": "D"
+        },
+        {
+          "number": 15,
+          "answer": "C"
+        },
+        {
+          "number": 16,
+          "answer": "D"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "C"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "B"
+        },
+        {
+          "number": 21,
+          "answer": "C"
+        },
+        {
+          "number": 22,
+          "answer": "B"
+        },
+        {
+          "number": 23,
+          "answer": "B"
+        },
+        {
+          "number": 24,
+          "answer": "A"
+        },
+        {
+          "number": 25,
+          "answer": "D"
+        },
+        {
+          "number": 26,
+          "answer": "C"
+        },
+        {
+          "number": 27,
+          "answer": "H"
+        },
+        {
+          "number": 28,
+          "answer": "M"
+        },
+        {
+          "number": 29,
+          "answer": "F"
+        },
+        {
+          "number": 30,
+          "answer": "N"
+        },
+        {
+          "number": 31,
+          "answer": "O"
+        },
+        {
+          "number": 32,
+          "answer": "E"
+        },
+        {
+          "number": 33,
+          "answer": "A"
+        },
+        {
+          "number": 34,
+          "answer": "G"
+        },
+        {
+          "number": 35,
+          "answer": "B"
+        },
+        {
+          "number": 36,
+          "answer": "D"
+        },
+        {
+          "number": 37,
+          "answer": "H"
+        },
+        {
+          "number": 38,
+          "answer": "N"
+        },
+        {
+          "number": 39,
+          "answer": "F"
+        },
+        {
+          "number": 40,
+          "answer": "B"
+        },
+        {
+          "number": 41,
+          "answer": "K"
+        },
+        {
+          "number": 42,
+          "answer": "E"
+        },
+        {
+          "number": 43,
+          "answer": "I"
+        },
+        {
+          "number": 44,
+          "answer": "C"
+        },
+        {
+          "number": 45,
+          "answer": "L"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "B"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "C"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2024-06",
+      "set": 2,
+      "slug": "2024-06/02",
+      "fullSlug": "cet6/2024-06/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "B"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "C"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "B"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "D"
+        },
+        {
+          "number": 9,
+          "answer": "A"
+        },
+        {
+          "number": 10,
+          "answer": "B"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "D"
+        },
+        {
+          "number": 13,
+          "answer": "C"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "A"
+        },
+        {
+          "number": 17,
+          "answer": "C"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "A"
+        },
+        {
+          "number": 20,
+          "answer": "B"
+        },
+        {
+          "number": 21,
+          "answer": "D"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "A"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "C"
+        },
+        {
+          "number": 26,
+          "answer": "A"
+        },
+        {
+          "number": 27,
+          "answer": "I"
+        },
+        {
+          "number": 28,
+          "answer": "B"
+        },
+        {
+          "number": 29,
+          "answer": "D"
+        },
+        {
+          "number": 30,
+          "answer": "C"
+        },
+        {
+          "number": 31,
+          "answer": "O"
+        },
+        {
+          "number": 32,
+          "answer": "M"
+        },
+        {
+          "number": 33,
+          "answer": "L"
+        },
+        {
+          "number": 34,
+          "answer": "E"
+        },
+        {
+          "number": 35,
+          "answer": "N"
+        },
+        {
+          "number": 36,
+          "answer": "C"
+        },
+        {
+          "number": 37,
+          "answer": "H"
+        },
+        {
+          "number": 38,
+          "answer": "B"
+        },
+        {
+          "number": 39,
+          "answer": "K"
+        },
+        {
+          "number": 40,
+          "answer": "I"
+        },
+        {
+          "number": 41,
+          "answer": "D"
+        },
+        {
+          "number": 42,
+          "answer": "N"
+        },
+        {
+          "number": 43,
+          "answer": "J"
+        },
+        {
+          "number": 44,
+          "answer": "E"
+        },
+        {
+          "number": 45,
+          "answer": "O"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "D"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "D"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "A"
+        },
+        {
+          "number": 54,
+          "answer": "B"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2024-06",
+      "set": 3,
+      "slug": "2024-06/03",
+      "fullSlug": "cet6/2024-06/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "I"
+        },
+        {
+          "number": 27,
+          "answer": "O"
+        },
+        {
+          "number": 28,
+          "answer": "H"
+        },
+        {
+          "number": 29,
+          "answer": "E"
+        },
+        {
+          "number": 30,
+          "answer": "G"
+        },
+        {
+          "number": 31,
+          "answer": "N"
+        },
+        {
+          "number": 32,
+          "answer": "A"
+        },
+        {
+          "number": 33,
+          "answer": "F"
+        },
+        {
+          "number": 34,
+          "answer": "J"
+        },
+        {
+          "number": 35,
+          "answer": "D"
+        },
+        {
+          "number": 36,
+          "answer": "D"
+        },
+        {
+          "number": 37,
+          "answer": "I"
+        },
+        {
+          "number": 38,
+          "answer": "A"
+        },
+        {
+          "number": 39,
+          "answer": "K"
+        },
+        {
+          "number": 40,
+          "answer": "H"
+        },
+        {
+          "number": 41,
+          "answer": "F"
+        },
+        {
+          "number": 42,
+          "answer": "J"
+        },
+        {
+          "number": 43,
+          "answer": "L"
+        },
+        {
+          "number": 44,
+          "answer": "G"
+        },
+        {
+          "number": 45,
+          "answer": "K"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "C"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "C"
+        },
+        {
+          "number": 52,
+          "answer": "D"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "A"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet6",
+      "period": "2024-12",
+      "set": 1,
+      "slug": "2024-12/01",
+      "fullSlug": "cet6/2024-12/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "D"
+        },
+        {
+          "number": 2,
+          "answer": "D"
+        },
+        {
+          "number": 3,
+          "answer": "B"
+        },
+        {
+          "number": 4,
+          "answer": "C"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "A"
+        },
+        {
+          "number": 7,
+          "answer": "B"
+        },
+        {
+          "number": 8,
+          "answer": "C"
+        },
+        {
+          "number": 9,
+          "answer": "D"
+        },
+        {
+          "number": 10,
+          "answer": "B"
+        },
+        {
+          "number": 11,
+          "answer": "D"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "A"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "C"
+        },
+        {
+          "number": 17,
+          "answer": "B"
+        },
+        {
+          "number": 18,
+          "answer": "D"
+        },
+        {
+          "number": 19,
+          "answer": "A"
+        },
+        {
+          "number": 20,
+          "answer": "D"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "C"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "A"
+        },
+        {
+          "number": 26,
+          "answer": "O"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "A"
+        },
+        {
+          "number": 29,
+          "answer": "J"
+        },
+        {
+          "number": 30,
+          "answer": "L"
+        },
+        {
+          "number": 31,
+          "answer": "D"
+        },
+        {
+          "number": 32,
+          "answer": "E"
+        },
+        {
+          "number": 33,
+          "answer": "K"
+        },
+        {
+          "number": 34,
+          "answer": "N"
+        },
+        {
+          "number": 35,
+          "answer": "M"
+        },
+        {
+          "number": 36,
+          "answer": "F"
+        },
+        {
+          "number": 37,
+          "answer": "C"
+        },
+        {
+          "number": 38,
+          "answer": "G"
+        },
+        {
+          "number": 39,
+          "answer": "J"
+        },
+        {
+          "number": 40,
+          "answer": "H"
+        },
+        {
+          "number": 41,
+          "answer": "O"
+        },
+        {
+          "number": 42,
+          "answer": "D"
+        },
+        {
+          "number": 43,
+          "answer": "I"
+        },
+        {
+          "number": 44,
+          "answer": "E"
+        },
+        {
+          "number": 45,
+          "answer": "K"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "A"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2024-12",
+      "set": 2,
+      "slug": "2024-12/02",
+      "fullSlug": "cet6/2024-12/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "C"
+        },
+        {
+          "number": 3,
+          "answer": "A"
+        },
+        {
+          "number": 4,
+          "answer": "B"
+        },
+        {
+          "number": 5,
+          "answer": "D"
+        },
+        {
+          "number": 6,
+          "answer": "C"
+        },
+        {
+          "number": 7,
+          "answer": "D"
+        },
+        {
+          "number": 8,
+          "answer": "B"
+        },
+        {
+          "number": 9,
+          "answer": "A"
+        },
+        {
+          "number": 10,
+          "answer": "B"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "D"
+        },
+        {
+          "number": 13,
+          "answer": "C"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "D"
+        },
+        {
+          "number": 17,
+          "answer": "C"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "A"
+        },
+        {
+          "number": 20,
+          "answer": "C"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "A"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "A"
+        },
+        {
+          "number": 26,
+          "answer": "L"
+        },
+        {
+          "number": 27,
+          "answer": "A"
+        },
+        {
+          "number": 28,
+          "answer": "F"
+        },
+        {
+          "number": 29,
+          "answer": "G"
+        },
+        {
+          "number": 30,
+          "answer": "N"
+        },
+        {
+          "number": 31,
+          "answer": "H"
+        },
+        {
+          "number": 32,
+          "answer": "D"
+        },
+        {
+          "number": 33,
+          "answer": "O"
+        },
+        {
+          "number": 34,
+          "answer": "M"
+        },
+        {
+          "number": 35,
+          "answer": "I"
+        },
+        {
+          "number": 36,
+          "answer": "E"
+        },
+        {
+          "number": 37,
+          "answer": "K"
+        },
+        {
+          "number": 38,
+          "answer": "G"
+        },
+        {
+          "number": 39,
+          "answer": "B"
+        },
+        {
+          "number": 40,
+          "answer": "H"
+        },
+        {
+          "number": 41,
+          "answer": "M"
+        },
+        {
+          "number": 42,
+          "answer": "F"
+        },
+        {
+          "number": 43,
+          "answer": "N"
+        },
+        {
+          "number": 44,
+          "answer": "D"
+        },
+        {
+          "number": 45,
+          "answer": "J"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "D"
+        },
+        {
+          "number": 54,
+          "answer": "B"
+        },
+        {
+          "number": 55,
+          "answer": "C"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2024-12",
+      "set": 3,
+      "slug": "2024-12/03",
+      "fullSlug": "cet6/2024-12/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "J"
+        },
+        {
+          "number": 27,
+          "answer": "H"
+        },
+        {
+          "number": 28,
+          "answer": "O"
+        },
+        {
+          "number": 29,
+          "answer": "A"
+        },
+        {
+          "number": 30,
+          "answer": "I"
+        },
+        {
+          "number": 31,
+          "answer": "L"
+        },
+        {
+          "number": 32,
+          "answer": "G"
+        },
+        {
+          "number": 33,
+          "answer": "C"
+        },
+        {
+          "number": 34,
+          "answer": "E"
+        },
+        {
+          "number": 35,
+          "answer": "D"
+        },
+        {
+          "number": 36,
+          "answer": "G"
+        },
+        {
+          "number": 37,
+          "answer": "C"
+        },
+        {
+          "number": 38,
+          "answer": "I"
+        },
+        {
+          "number": 39,
+          "answer": "D"
+        },
+        {
+          "number": 40,
+          "answer": "M"
+        },
+        {
+          "number": 41,
+          "answer": "J"
+        },
+        {
+          "number": 42,
+          "answer": "E"
+        },
+        {
+          "number": 43,
+          "answer": "H"
+        },
+        {
+          "number": 44,
+          "answer": "A"
+        },
+        {
+          "number": 45,
+          "answer": "L"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "C"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "B"
+        },
+        {
+          "number": 53,
+          "answer": "C"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "D"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet6",
+      "period": "2025-06",
+      "set": 1,
+      "slug": "2025-06/01",
+      "fullSlug": "cet6/2025-06/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "C"
+        },
+        {
+          "number": 2,
+          "answer": "B"
+        },
+        {
+          "number": 3,
+          "answer": "D"
+        },
+        {
+          "number": 4,
+          "answer": "A"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "D"
+        },
+        {
+          "number": 7,
+          "answer": "C"
+        },
+        {
+          "number": 8,
+          "answer": "D"
+        },
+        {
+          "number": 9,
+          "answer": "C"
+        },
+        {
+          "number": 10,
+          "answer": "B"
+        },
+        {
+          "number": 11,
+          "answer": "A"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "C"
+        },
+        {
+          "number": 14,
+          "answer": "B"
+        },
+        {
+          "number": 15,
+          "answer": "B"
+        },
+        {
+          "number": 16,
+          "answer": "D"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "A"
+        },
+        {
+          "number": 20,
+          "answer": "D"
+        },
+        {
+          "number": 21,
+          "answer": "C"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "A"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "B"
+        },
+        {
+          "number": 26,
+          "answer": "J"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "L"
+        },
+        {
+          "number": 29,
+          "answer": "F"
+        },
+        {
+          "number": 30,
+          "answer": "A"
+        },
+        {
+          "number": 31,
+          "answer": "D"
+        },
+        {
+          "number": 32,
+          "answer": "C"
+        },
+        {
+          "number": 33,
+          "answer": "E"
+        },
+        {
+          "number": 34,
+          "answer": "G"
+        },
+        {
+          "number": 35,
+          "answer": "O"
+        },
+        {
+          "number": 36,
+          "answer": "G"
+        },
+        {
+          "number": 37,
+          "answer": "C"
+        },
+        {
+          "number": 38,
+          "answer": "I"
+        },
+        {
+          "number": 39,
+          "answer": "D"
+        },
+        {
+          "number": 40,
+          "answer": "A"
+        },
+        {
+          "number": 41,
+          "answer": "L"
+        },
+        {
+          "number": 42,
+          "answer": "F"
+        },
+        {
+          "number": 43,
+          "answer": "H"
+        },
+        {
+          "number": 44,
+          "answer": "B"
+        },
+        {
+          "number": 45,
+          "answer": "K"
+        },
+        {
+          "number": 46,
+          "answer": "C"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "B"
+        },
+        {
+          "number": 49,
+          "answer": "B"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "A"
+        },
+        {
+          "number": 53,
+          "answer": "D"
+        },
+        {
+          "number": 54,
+          "answer": "C"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2025-06",
+      "set": 2,
+      "slug": "2025-06/02",
+      "fullSlug": "cet6/2025-06/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "D"
+        },
+        {
+          "number": 2,
+          "answer": "B"
+        },
+        {
+          "number": 3,
+          "answer": "A"
+        },
+        {
+          "number": 4,
+          "answer": "D"
+        },
+        {
+          "number": 5,
+          "answer": "B"
+        },
+        {
+          "number": 6,
+          "answer": "C"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "B"
+        },
+        {
+          "number": 9,
+          "answer": "D"
+        },
+        {
+          "number": 10,
+          "answer": "C"
+        },
+        {
+          "number": 11,
+          "answer": "B"
+        },
+        {
+          "number": 12,
+          "answer": "A"
+        },
+        {
+          "number": 13,
+          "answer": "C"
+        },
+        {
+          "number": 14,
+          "answer": "A"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "C"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "D"
+        },
+        {
+          "number": 19,
+          "answer": "A"
+        },
+        {
+          "number": 20,
+          "answer": "D"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "B"
+        },
+        {
+          "number": 25,
+          "answer": "C"
+        },
+        {
+          "number": 26,
+          "answer": "B"
+        },
+        {
+          "number": 27,
+          "answer": "E"
+        },
+        {
+          "number": 28,
+          "answer": "F"
+        },
+        {
+          "number": 29,
+          "answer": "A"
+        },
+        {
+          "number": 30,
+          "answer": "I"
+        },
+        {
+          "number": 31,
+          "answer": "D"
+        },
+        {
+          "number": 32,
+          "answer": "C"
+        },
+        {
+          "number": 33,
+          "answer": "G"
+        },
+        {
+          "number": 34,
+          "answer": "L"
+        },
+        {
+          "number": 35,
+          "answer": "N"
+        },
+        {
+          "number": 36,
+          "answer": "C"
+        },
+        {
+          "number": 37,
+          "answer": "H"
+        },
+        {
+          "number": 38,
+          "answer": "B"
+        },
+        {
+          "number": 39,
+          "answer": "I"
+        },
+        {
+          "number": 40,
+          "answer": "M"
+        },
+        {
+          "number": 41,
+          "answer": "E"
+        },
+        {
+          "number": 42,
+          "answer": "O"
+        },
+        {
+          "number": 43,
+          "answer": "L"
+        },
+        {
+          "number": 44,
+          "answer": "G"
+        },
+        {
+          "number": 45,
+          "answer": "N"
+        },
+        {
+          "number": 46,
+          "answer": "C"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "D"
+        },
+        {
+          "number": 50,
+          "answer": "B"
+        },
+        {
+          "number": 51,
+          "answer": "A"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2025-06",
+      "set": 3,
+      "slug": "2025-06/03",
+      "fullSlug": "cet6/2025-06/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "K"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "I"
+        },
+        {
+          "number": 29,
+          "answer": "A"
+        },
+        {
+          "number": 30,
+          "answer": "J"
+        },
+        {
+          "number": 31,
+          "answer": "C"
+        },
+        {
+          "number": 32,
+          "answer": "D"
+        },
+        {
+          "number": 33,
+          "answer": "F"
+        },
+        {
+          "number": 34,
+          "answer": "O"
+        },
+        {
+          "number": 35,
+          "answer": "E"
+        },
+        {
+          "number": 36,
+          "answer": "E"
+        },
+        {
+          "number": 37,
+          "answer": "K"
+        },
+        {
+          "number": 38,
+          "answer": "H"
+        },
+        {
+          "number": 39,
+          "answer": "A"
+        },
+        {
+          "number": 40,
+          "answer": "I"
+        },
+        {
+          "number": 41,
+          "answer": "M"
+        },
+        {
+          "number": 42,
+          "answer": "D"
+        },
+        {
+          "number": 43,
+          "answer": "L"
+        },
+        {
+          "number": 44,
+          "answer": "C"
+        },
+        {
+          "number": 45,
+          "answer": "J"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "C"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "B"
+        },
+        {
+          "number": 51,
+          "answer": "B"
+        },
+        {
+          "number": 52,
+          "answer": "B"
+        },
+        {
+          "number": 53,
+          "answer": "C"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "cet6",
+      "period": "2025-12",
+      "set": 1,
+      "slug": "2025-12/01",
+      "fullSlug": "cet6/2025-12/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "D"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "A"
+        },
+        {
+          "number": 5,
+          "answer": "B"
+        },
+        {
+          "number": 6,
+          "answer": "B"
+        },
+        {
+          "number": 7,
+          "answer": "D"
+        },
+        {
+          "number": 8,
+          "answer": "C"
+        },
+        {
+          "number": 9,
+          "answer": "D"
+        },
+        {
+          "number": 10,
+          "answer": "A"
+        },
+        {
+          "number": 11,
+          "answer": "C"
+        },
+        {
+          "number": 12,
+          "answer": "A"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "B"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "A"
+        },
+        {
+          "number": 18,
+          "answer": "D"
+        },
+        {
+          "number": 19,
+          "answer": "C"
+        },
+        {
+          "number": 20,
+          "answer": "B"
+        },
+        {
+          "number": 21,
+          "answer": "D"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "A"
+        },
+        {
+          "number": 24,
+          "answer": "C"
+        },
+        {
+          "number": 25,
+          "answer": "D"
+        },
+        {
+          "number": 26,
+          "answer": "H"
+        },
+        {
+          "number": 27,
+          "answer": "J"
+        },
+        {
+          "number": 28,
+          "answer": "G"
+        },
+        {
+          "number": 29,
+          "answer": "C"
+        },
+        {
+          "number": 30,
+          "answer": "E"
+        },
+        {
+          "number": 31,
+          "answer": "F"
+        },
+        {
+          "number": 32,
+          "answer": "D"
+        },
+        {
+          "number": 33,
+          "answer": "K"
+        },
+        {
+          "number": 34,
+          "answer": "L"
+        },
+        {
+          "number": 35,
+          "answer": "A"
+        },
+        {
+          "number": 36,
+          "answer": "C"
+        },
+        {
+          "number": 37,
+          "answer": "H"
+        },
+        {
+          "number": 38,
+          "answer": "D"
+        },
+        {
+          "number": 39,
+          "answer": "L"
+        },
+        {
+          "number": 40,
+          "answer": "A"
+        },
+        {
+          "number": 41,
+          "answer": "F"
+        },
+        {
+          "number": 42,
+          "answer": "M"
+        },
+        {
+          "number": 43,
+          "answer": "J"
+        },
+        {
+          "number": 44,
+          "answer": "O"
+        },
+        {
+          "number": 45,
+          "answer": "G"
+        },
+        {
+          "number": 46,
+          "answer": "D"
+        },
+        {
+          "number": 47,
+          "answer": "A"
+        },
+        {
+          "number": 48,
+          "answer": "D"
+        },
+        {
+          "number": 49,
+          "answer": "B"
+        },
+        {
+          "number": 50,
+          "answer": "B"
+        },
+        {
+          "number": 51,
+          "answer": "C"
+        },
+        {
+          "number": 52,
+          "answer": "A"
+        },
+        {
+          "number": 53,
+          "answer": "C"
+        },
+        {
+          "number": 54,
+          "answer": "D"
+        },
+        {
+          "number": 55,
+          "answer": "B"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2025-12",
+      "set": 2,
+      "slug": "2025-12/02",
+      "fullSlug": "cet6/2025-12/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "B"
+        },
+        {
+          "number": 2,
+          "answer": "A"
+        },
+        {
+          "number": 3,
+          "answer": "C"
+        },
+        {
+          "number": 4,
+          "answer": "D"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "B"
+        },
+        {
+          "number": 7,
+          "answer": "D"
+        },
+        {
+          "number": 8,
+          "answer": "C"
+        },
+        {
+          "number": 9,
+          "answer": "B"
+        },
+        {
+          "number": 10,
+          "answer": "C"
+        },
+        {
+          "number": 11,
+          "answer": "A"
+        },
+        {
+          "number": 12,
+          "answer": "C"
+        },
+        {
+          "number": 13,
+          "answer": "A"
+        },
+        {
+          "number": 14,
+          "answer": "B"
+        },
+        {
+          "number": 15,
+          "answer": "D"
+        },
+        {
+          "number": 16,
+          "answer": "C"
+        },
+        {
+          "number": 17,
+          "answer": "B"
+        },
+        {
+          "number": 18,
+          "answer": "D"
+        },
+        {
+          "number": 19,
+          "answer": "D"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "C"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "A"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "B"
+        },
+        {
+          "number": 26,
+          "answer": "I"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "M"
+        },
+        {
+          "number": 29,
+          "answer": "C"
+        },
+        {
+          "number": 30,
+          "answer": "K"
+        },
+        {
+          "number": 31,
+          "answer": "A"
+        },
+        {
+          "number": 32,
+          "answer": "D"
+        },
+        {
+          "number": 33,
+          "answer": "F"
+        },
+        {
+          "number": 34,
+          "answer": "J"
+        },
+        {
+          "number": 35,
+          "answer": "O"
+        },
+        {
+          "number": 36,
+          "answer": "F"
+        },
+        {
+          "number": 37,
+          "answer": "K"
+        },
+        {
+          "number": 38,
+          "answer": "J"
+        },
+        {
+          "number": 39,
+          "answer": "E"
+        },
+        {
+          "number": 40,
+          "answer": "M"
+        },
+        {
+          "number": 41,
+          "answer": "I"
+        },
+        {
+          "number": 42,
+          "answer": "O"
+        },
+        {
+          "number": 43,
+          "answer": "C"
+        },
+        {
+          "number": 44,
+          "answer": "N"
+        },
+        {
+          "number": 45,
+          "answer": "H"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "C"
+        },
+        {
+          "number": 49,
+          "answer": "B"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "B"
+        },
+        {
+          "number": 53,
+          "answer": "D"
+        },
+        {
+          "number": 54,
+          "answer": "A"
+        },
+        {
+          "number": 55,
+          "answer": "C"
+        }
+      ],
+      "count": 55
+    },
+    {
+      "category": "cet6",
+      "period": "2025-12",
+      "set": 3,
+      "slug": "2025-12/03",
+      "fullSlug": "cet6/2025-12/03",
+      "answers": [
+        {
+          "number": 26,
+          "answer": "N"
+        },
+        {
+          "number": 27,
+          "answer": "G"
+        },
+        {
+          "number": 28,
+          "answer": "F"
+        },
+        {
+          "number": 29,
+          "answer": "J"
+        },
+        {
+          "number": 30,
+          "answer": "H"
+        },
+        {
+          "number": 31,
+          "answer": "M"
+        },
+        {
+          "number": 32,
+          "answer": "E"
+        },
+        {
+          "number": 33,
+          "answer": "C"
+        },
+        {
+          "number": 34,
+          "answer": "D"
+        },
+        {
+          "number": 35,
+          "answer": "B"
+        },
+        {
+          "number": 36,
+          "answer": "Q"
+        },
+        {
+          "number": 37,
+          "answer": "I"
+        },
+        {
+          "number": 38,
+          "answer": "A"
+        },
+        {
+          "number": 39,
+          "answer": "J"
+        },
+        {
+          "number": 40,
+          "answer": "R"
+        },
+        {
+          "number": 41,
+          "answer": "L"
+        },
+        {
+          "number": 42,
+          "answer": "F"
+        },
+        {
+          "number": 43,
+          "answer": "K"
+        },
+        {
+          "number": 44,
+          "answer": "B"
+        },
+        {
+          "number": 45,
+          "answer": "N"
+        },
+        {
+          "number": 46,
+          "answer": "B"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "A"
+        },
+        {
+          "number": 49,
+          "answer": "C"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        },
+        {
+          "number": 51,
+          "answer": "D"
+        },
+        {
+          "number": 52,
+          "answer": "C"
+        },
+        {
+          "number": 53,
+          "answer": "B"
+        },
+        {
+          "number": 54,
+          "answer": "A"
+        },
+        {
+          "number": 55,
+          "answer": "D"
+        }
+      ],
+      "count": 30
+    },
+    {
+      "category": "tem4",
+      "period": "2024",
+      "set": 1,
+      "slug": "2024-06/01",
+      "fullSlug": "tem4/2024-06/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "B"
+        },
+        {
+          "number": 3,
+          "answer": "D"
+        },
+        {
+          "number": 4,
+          "answer": "C"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "A"
+        },
+        {
+          "number": 7,
+          "answer": "C"
+        },
+        {
+          "number": 8,
+          "answer": "D"
+        },
+        {
+          "number": 9,
+          "answer": "B"
+        },
+        {
+          "number": 10,
+          "answer": "A"
+        },
+        {
+          "number": 11,
+          "answer": "C"
+        },
+        {
+          "number": 12,
+          "answer": "B"
+        },
+        {
+          "number": 13,
+          "answer": "A"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "D"
+        },
+        {
+          "number": 18,
+          "answer": "C"
+        },
+        {
+          "number": 19,
+          "answer": "B"
+        },
+        {
+          "number": 20,
+          "answer": "A"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "A"
+        },
+        {
+          "number": 23,
+          "answer": "C"
+        },
+        {
+          "number": 24,
+          "answer": "D"
+        },
+        {
+          "number": 25,
+          "answer": "B"
+        },
+        {
+          "number": 26,
+          "answer": "D"
+        },
+        {
+          "number": 27,
+          "answer": "C"
+        },
+        {
+          "number": 28,
+          "answer": "A"
+        },
+        {
+          "number": 29,
+          "answer": "B"
+        },
+        {
+          "number": 30,
+          "answer": "C"
+        },
+        {
+          "number": 31,
+          "answer": "H"
+        },
+        {
+          "number": 32,
+          "answer": "C"
+        },
+        {
+          "number": 33,
+          "answer": "N"
+        },
+        {
+          "number": 34,
+          "answer": "L"
+        },
+        {
+          "number": 35,
+          "answer": "I"
+        },
+        {
+          "number": 36,
+          "answer": "J"
+        },
+        {
+          "number": 37,
+          "answer": "G"
+        },
+        {
+          "number": 38,
+          "answer": "D"
+        },
+        {
+          "number": 39,
+          "answer": "O"
+        },
+        {
+          "number": 40,
+          "answer": "B"
+        },
+        {
+          "number": 41,
+          "answer": "C"
+        },
+        {
+          "number": 42,
+          "answer": "A"
+        },
+        {
+          "number": 43,
+          "answer": "B"
+        },
+        {
+          "number": 44,
+          "answer": "D"
+        },
+        {
+          "number": 45,
+          "answer": "C"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "C"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "D"
+        }
+      ],
+      "count": 50
+    },
+    {
+      "category": "tem4",
+      "period": "2025",
+      "set": 1,
+      "slug": "2025-06/01",
+      "fullSlug": "tem4/2025-06/01",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "D"
+        },
+        {
+          "number": 2,
+          "answer": "C"
+        },
+        {
+          "number": 3,
+          "answer": "A"
+        },
+        {
+          "number": 4,
+          "answer": "D"
+        },
+        {
+          "number": 5,
+          "answer": "B"
+        },
+        {
+          "number": 6,
+          "answer": "A"
+        },
+        {
+          "number": 7,
+          "answer": "B"
+        },
+        {
+          "number": 8,
+          "answer": "C"
+        },
+        {
+          "number": 9,
+          "answer": "A"
+        },
+        {
+          "number": 10,
+          "answer": "D"
+        },
+        {
+          "number": 11,
+          "answer": "D"
+        },
+        {
+          "number": 12,
+          "answer": "A"
+        },
+        {
+          "number": 13,
+          "answer": "B"
+        },
+        {
+          "number": 14,
+          "answer": "D"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "C"
+        },
+        {
+          "number": 17,
+          "answer": "B"
+        },
+        {
+          "number": 18,
+          "answer": "C"
+        },
+        {
+          "number": 19,
+          "answer": "B"
+        },
+        {
+          "number": 20,
+          "answer": "C"
+        },
+        {
+          "number": 21,
+          "answer": "A"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "A"
+        },
+        {
+          "number": 24,
+          "answer": "A"
+        },
+        {
+          "number": 25,
+          "answer": "C"
+        },
+        {
+          "number": 26,
+          "answer": "D"
+        },
+        {
+          "number": 27,
+          "answer": "B"
+        },
+        {
+          "number": 28,
+          "answer": "C"
+        },
+        {
+          "number": 29,
+          "answer": "B"
+        },
+        {
+          "number": 30,
+          "answer": "D"
+        },
+        {
+          "number": 31,
+          "answer": "L"
+        },
+        {
+          "number": 32,
+          "answer": "J"
+        },
+        {
+          "number": 33,
+          "answer": "I"
+        },
+        {
+          "number": 34,
+          "answer": "B"
+        },
+        {
+          "number": 35,
+          "answer": "E"
+        },
+        {
+          "number": 36,
+          "answer": "H"
+        },
+        {
+          "number": 37,
+          "answer": "K"
+        },
+        {
+          "number": 38,
+          "answer": "A"
+        },
+        {
+          "number": 39,
+          "answer": "C"
+        },
+        {
+          "number": 40,
+          "answer": "D"
+        },
+        {
+          "number": 41,
+          "answer": "C"
+        },
+        {
+          "number": 42,
+          "answer": "A"
+        },
+        {
+          "number": 43,
+          "answer": "D"
+        },
+        {
+          "number": 44,
+          "answer": "B"
+        },
+        {
+          "number": 45,
+          "answer": "D"
+        },
+        {
+          "number": 46,
+          "answer": "A"
+        },
+        {
+          "number": 47,
+          "answer": "B"
+        },
+        {
+          "number": 48,
+          "answer": "B"
+        },
+        {
+          "number": 49,
+          "answer": "A"
+        },
+        {
+          "number": 50,
+          "answer": "C"
+        }
+      ],
+      "count": 50
+    },
+    {
+      "category": "tem8",
+      "period": "2024",
+      "set": 1,
+      "slug": "2024-06/02",
+      "fullSlug": "tem8/2024-06/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "C"
+        },
+        {
+          "number": 3,
+          "answer": "D"
+        },
+        {
+          "number": 4,
+          "answer": "B"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "C"
+        },
+        {
+          "number": 7,
+          "answer": "B"
+        },
+        {
+          "number": 8,
+          "answer": "D"
+        },
+        {
+          "number": 9,
+          "answer": "C"
+        },
+        {
+          "number": 10,
+          "answer": "B"
+        },
+        {
+          "number": 11,
+          "answer": "D"
+        },
+        {
+          "number": 12,
+          "answer": "B"
+        },
+        {
+          "number": 13,
+          "answer": "D"
+        },
+        {
+          "number": 14,
+          "answer": "C"
+        },
+        {
+          "number": 15,
+          "answer": "A"
+        },
+        {
+          "number": 16,
+          "answer": "D"
+        },
+        {
+          "number": 17,
+          "answer": "C"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "A"
+        },
+        {
+          "number": 20,
+          "answer": "D"
+        },
+        {
+          "number": 21,
+          "answer": "B"
+        },
+        {
+          "number": 22,
+          "answer": "C"
+        },
+        {
+          "number": 23,
+          "answer": "D"
+        },
+        {
+          "number": 24,
+          "answer": "A"
+        }
+      ],
+      "count": 24
+    },
+    {
+      "category": "tem8",
+      "period": "2025",
+      "set": 1,
+      "slug": "2025-06/02",
+      "fullSlug": "tem8/2025-06/02",
+      "answers": [
+        {
+          "number": 1,
+          "answer": "A"
+        },
+        {
+          "number": 2,
+          "answer": "D"
+        },
+        {
+          "number": 3,
+          "answer": "B"
+        },
+        {
+          "number": 4,
+          "answer": "C"
+        },
+        {
+          "number": 5,
+          "answer": "A"
+        },
+        {
+          "number": 6,
+          "answer": "B"
+        },
+        {
+          "number": 7,
+          "answer": "A"
+        },
+        {
+          "number": 8,
+          "answer": "C"
+        },
+        {
+          "number": 9,
+          "answer": "D"
+        },
+        {
+          "number": 10,
+          "answer": "D"
+        },
+        {
+          "number": 11,
+          "answer": "C"
+        },
+        {
+          "number": 12,
+          "answer": "B"
+        },
+        {
+          "number": 13,
+          "answer": "D"
+        },
+        {
+          "number": 14,
+          "answer": "B"
+        },
+        {
+          "number": 15,
+          "answer": "B"
+        },
+        {
+          "number": 16,
+          "answer": "B"
+        },
+        {
+          "number": 17,
+          "answer": "D"
+        },
+        {
+          "number": 18,
+          "answer": "B"
+        },
+        {
+          "number": 19,
+          "answer": "A"
+        },
+        {
+          "number": 20,
+          "answer": "C"
+        },
+        {
+          "number": 21,
+          "answer": "C"
+        },
+        {
+          "number": 22,
+          "answer": "D"
+        },
+        {
+          "number": 23,
+          "answer": "B"
+        },
+        {
+          "number": 24,
+          "answer": "A"
+        }
+      ],
+      "count": 24
+    }
+  ]
+}

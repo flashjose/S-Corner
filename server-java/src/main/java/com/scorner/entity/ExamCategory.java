@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 考试类别 (如：考研英语、CET4、CET6、专四专八)
+ * 考试类别 (如：考研英语、CET4、CET6)
  */
 @Entity
 @Table(name = "exam_categories")
@@ -18,7 +18,7 @@ public class ExamCategory {
     private String id;
 
     @Column(nullable = false, unique = true)
-    private String slug; // kaoyan, cet4, cet6, tem4, tem8
+    private String slug; // kaoyan, cet4, cet6
 
     @Column(nullable = false)
     private String name; // 考研英语, 大学英语四级, ...

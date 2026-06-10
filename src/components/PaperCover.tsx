@@ -11,7 +11,6 @@ const CATEGORY_STYLES: Record<string, { label: string; accent: string; bg: strin
   cet4: { label: 'CET-4', accent: '#2563eb', bg: '#eff6ff', border: '#bfdbfe', darkBg: '#1e293b', darkBorder: '#334155' },
   cet6: { label: 'CET-6', accent: '#059669', bg: '#ecfdf5', border: '#a7f3d0', darkBg: '#1a2e2a', darkBorder: '#334155' },
   kaoyan: { label: '考研', accent: '#dc2626', bg: '#fef2f2', border: '#fecaca', darkBg: '#2e1a1a', darkBorder: '#334155' },
-  tem: { label: 'TEM', accent: '#7c3aed', bg: '#f5f3ff', border: '#ddd6fe', darkBg: '#231a2e', darkBorder: '#334155' },
 };
 
 const PaperCover = ({ categorySlug, year, month, setId, title, className = '' }: PaperCoverProps) => {

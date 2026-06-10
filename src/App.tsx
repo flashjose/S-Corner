@@ -21,7 +21,6 @@ const NAV_ITEMS = [
   { to: '/cet4', label: 'CET4' },
   { to: '/cet6', label: 'CET6' },
   { to: '/kaoyan', label: '考研' },
-  { to: '/tem', label: '专四专八' },
   { to: '/vocabulary', label: 'Vocabulary' },
 ];
 
