@@ -72,9 +72,9 @@ public class ExamPaper {
     @JsonIgnore
     private List<PaperAnnotation> annotations = new ArrayList<>();
 
-    @OneToOne(mappedBy = "paper", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "paper", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private PaperProgress progress;
+    private List<PaperProgress> progressList = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {
@@ -116,6 +116,6 @@ public class ExamPaper {
     public ExamCategory getCategory() { return category; }
     public List<PaperAnnotation> getAnnotations() { return annotations; }
     public void setAnnotations(List<PaperAnnotation> annotations) { this.annotations = annotations; }
-    public PaperProgress getProgress() { return progress; }
-    public void setProgress(PaperProgress progress) { this.progress = progress; }
+    public List<PaperProgress> getProgressList() { return progressList; }
+    public void setProgressList(List<PaperProgress> progressList) { this.progressList = progressList; }
 }

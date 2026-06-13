@@ -111,13 +111,6 @@ public/pdfs/         # 真题 PDF（用户自行放置）
 scripts/             # 内容导入脚本
 ```
 
-## 遗留 RSS 模块
-
-RSS/文章阅读相关 API 已用 `@Profile("legacy")` 隔离，默认不启用。如需启用：
-
-```bash
-mvn spring-boot:run -Dspring-boot.run.profiles=legacy
-```
 
 ## 许可证
 
